@@ -3,8 +3,8 @@ import React from 'react';
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="section container mx-auto py-20">
-       <div className='absolute left-10 opacity-95 -mt-64 -z-10 '>
+    <section id="projects" className="section container  py-20">
+       <div className='absolute right-10 opacity-95 -mt-64 -z-10 '>
                 <Image src={'/images/robot.svg'} alt='' width={300} height={1000}/>
               </div>
       <h2 className="text-2xl font-semibold">Projects</h2>

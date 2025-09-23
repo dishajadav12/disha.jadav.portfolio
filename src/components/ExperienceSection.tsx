@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="section container mx-auto py-20">
+    <section id="experience" className="section container  py-20">
         
       <h2 className="text-2xl font-semibold">Experience</h2>
       <div className="mt-4">

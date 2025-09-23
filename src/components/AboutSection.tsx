@@ -3,8 +3,8 @@ import React from "react";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="section container mx-auto py-20">
-      <div className="absolute right-0 opacity-90 -z-10 pt-44">
+    <section id="about" className="section container">
+      <div className="absolute left-0 -z-10 pt-44">
         <Image src={"/images/rocket.svg"} alt="" width={800} height={800} />
       </div>
       <h2 className="text-2xl font-semibold">About Me</h2>
