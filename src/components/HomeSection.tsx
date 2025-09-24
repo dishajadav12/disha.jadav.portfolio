@@ -1,25 +1,51 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "./ui/text-reveal-card";
 
 export default function HomeSection() {
   return (
-    <section id="home" className="section container  py-20">
-     <div className="absolute top-30 left-20 -z-10">
-      <div className="motion-safe:animate-[spin_220s_linear_infinite] hover:[animation-play-state:paused]">
-        <Image src="/images/saturn.svg" alt="Saturn" width={300} height={300} />
-      </div>
-    </div>
-      <h1 className="text-4xl font-bold">Hi, I&apos;m Disha</h1>
-      <p className="mt-4 text-lg text-muted-foreground">A frontend developer building beautiful web experiences.</p>
-       <div className='absolute -bottom-18 right-10 -z-10'>
-           <div className="motion-safe:animate-[spin_220s_linear_infinite] hover:[animation-play-state:paused]">
-
-        <Image src={'/images/ufo.svg'} alt='' width={400} height={400}/>
-
+    <section
+      id="home"
+      className="section py-20 flex flex-col items-center justify-center"
+    >
+      {/* Saturn */}
+      <div className="absolute top-30 left-20 -z-10">
+        <div className="motion-safe:animate-[spin_220s_linear_infinite] hover:[animation-play-state:paused]">
+          <Image
+            src="/images/saturn.svg"
+            alt="Saturn"
+            width={300}
+            height={300}
+          />
         </div>
       </div>
-            
 
+      {/* Card wrapper (full screen width) */}
+      <div className="flex items-center justify-center">
+        <TextRevealCard
+          text="Exploring the code universe"
+          revealText="Designing stellar experiences"
+        >
+          <TextRevealCardTitle>
+            Hello, Earthlings! I&apos;m Disha Jadav.
+          </TextRevealCardTitle>
+          <TextRevealCardDescription>
+            Welcome aboard my cosmic portfolio!
+          </TextRevealCardDescription>
+        </TextRevealCard>
+        {/* I navigate the universe of full-stack development, building stellar experiences and launching scalable web applications. Buckle up and explore my galaxy of projects. */}
+      </div>
+
+      {/* UFO */}
+      <div className="absolute -bottom-18 right-10 -z-10">
+        <div className="motion-safe:animate-pulse hover:[animation-play-state:paused]">
+          <Image src={"/images/ufo.svg"} alt="" width={400} height={400} />
+        </div>
+      </div>
     </section>
   );
 }

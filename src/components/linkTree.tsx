@@ -5,13 +5,10 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandX,
-  IconExchange,
   IconFileAnalytics,
-  IconFileCv,
-  IconHome,
+
   IconMail,
-  IconNewSection,
-  IconTerminal2,
+
 } from "@tabler/icons-react";
 
 export function LinkTree() {
@@ -30,7 +27,7 @@ export function LinkTree() {
       icon: (
         <IconBrandLinkedin className="h-full w-full text-neutral-200 dark:text-neutral-300" />
       ),
-      href: "#",
+      href: "https://www.linkedin.com/in/disha-jadav-606484209/",
     },
    
     {
