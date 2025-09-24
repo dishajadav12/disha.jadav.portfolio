@@ -2,9 +2,8 @@ import Image from "next/image";
 import React from "react";
 import {
   TextRevealCard,
-  TextRevealCardDescription,
-  TextRevealCardTitle,
 } from "./ui/text-reveal-card";
+import { TextHoverEffect } from "./ui/text-hover-effect";
 
 export default function HomeSection() {
   return (
@@ -13,8 +12,8 @@ export default function HomeSection() {
       className="section py-20 flex flex-col items-center justify-center"
     >
       {/* Saturn */}
-      <div className="absolute top-30 left-20 -z-10">
-        <div className="motion-safe:animate-[spin_220s_linear_infinite] hover:[animation-play-state:paused]">
+      <div className="absolute bottom-0 right-20 -z-10">
+        <div className="">
           <Image
             src="/images/saturn.svg"
             alt="Saturn"
@@ -23,27 +22,27 @@ export default function HomeSection() {
           />
         </div>
       </div>
-
+ <div className=" flex items-center justify-center">
+      <TextHoverEffect text="DISHA's WORLD" />
+    </div>
       {/* Card wrapper (full screen width) */}
       <div className="flex items-center justify-center">
+        
         <TextRevealCard
           text="Exploring the code universe"
           revealText="Designing stellar experiences"
         >
-          <TextRevealCardTitle>
-            Hello, Earthlings! I&apos;m Disha Jadav.
-          </TextRevealCardTitle>
-          <TextRevealCardDescription>
+          {/* <TextRevealCardDescription>
             Welcome aboard my cosmic portfolio!
-          </TextRevealCardDescription>
+          </TextRevealCardDescription> */}
         </TextRevealCard>
         {/* I navigate the universe of full-stack development, building stellar experiences and launching scalable web applications. Buckle up and explore my galaxy of projects. */}
       </div>
 
       {/* UFO */}
-      <div className="absolute -bottom-18 right-10 -z-10">
+      <div className="absolute top-18 left-10 -z-10">
         <div className="motion-safe:animate-pulse hover:[animation-play-state:paused]">
-          <Image src={"/images/ufo.svg"} alt="" width={400} height={400} />
+          <Image src={"/images/ufo.svg"} alt="" width={300} height={300} />
         </div>
       </div>
     </section>

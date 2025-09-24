@@ -125,31 +125,19 @@ export const TextRevealCard = ({
   );
 };
 
-export const TextRevealCardTitle = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <h2 className={twMerge("text-white text-lg mb-2 font-mono", className)}>
-      {children}
-    </h2>
-  );
-};
 
-export const TextRevealCardDescription = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <p className={twMerge("text-[#a9a9a9] text-sm font-mono", className)}>{children}</p>
-  );
-};
+
+// export const TextRevealCardDescription = ({
+//   children,
+//   className,
+// }: {
+//   children: React.ReactNode;
+//   className?: string;
+// }) => {
+//   return (
+//     <p className={twMerge("text-[#a9a9a9] text-sm font-mono", className)}>{children}</p>
+//   );
+// };
 
 const Stars = () => {
   const randomMove = () => Math.random() * 40 - 20;
