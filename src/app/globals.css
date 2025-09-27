@@ -18,6 +18,14 @@
     --foreground: #0a0a0a;
   }
 }
+/* globals.css */
+@media (prefers-reduced-motion: reduce) {
+  .rm-no-motion {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
 
 /* Use the SVG in `public/images/blue-bg.svg` as a fixed site-wide background.
    Placing it on `html` ensures it remains constant while pages scroll. */
