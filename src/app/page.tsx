@@ -21,7 +21,7 @@ export default function Home() {
       {/* Hero usually visible immediately; you may skip reveal here */}
       <HomeSection />
 
-      <Reveal>
+      <Reveal delay={100}>
         <AboutSection />
       </Reveal>
 

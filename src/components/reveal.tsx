@@ -81,7 +81,7 @@ export default function Reveal({
       style={{
         opacity: inView ? 1 : 0,
         transform: inView ? "none" : startTransform,
-        transition: "opacity 1000s ease-out, transform 1000s ease-out",
+        transition: "opacity 700ms ease-out, transform 700ms ease-out",
         willChange: "opacity, transform",
       }}
       className={className}

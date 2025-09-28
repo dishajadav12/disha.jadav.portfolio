@@ -1,5 +1,6 @@
 "use client";
 import * as Tabler from "@tabler/icons-react";
+import type { ElementType } from "react";
 // react-icons packs (pick what you need)
 import { DiPostgresql,DiJava,DiScrum   } from "react-icons/di";
 import { BiLogoAws } from "react-icons/bi";
@@ -88,7 +89,10 @@ export default function TechStackIcons() {
     <div className="flex flex-wrap gap-3 relative z-10">
       {ITEMS.map((t) => {
         // look up in our combined registry; fall back to a generic Tabler icon
-        const IconCmp: any = (ICONS as any)[t.icon] || Tabler.IconCode;
+        // look up icon in our combined registry; fall back to a generic Tabler icon
+        const IconCmp: ElementType =
+          ((ICONS as unknown) as Record<string, ElementType>)[t.icon] ||
+          Tabler.IconCode;
         const id = `tip-${t.name.replace(/\W/g, "").toLowerCase()}`;
 
         return (
