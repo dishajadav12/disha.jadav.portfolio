@@ -14,8 +14,8 @@ export default function AboutSection() {
       <div
         className="
           grid grid-cols-1 lg:grid-cols-3
-          auto-rows-fr                         /* small screens: rows share height */
-          lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]  /* lg: 2 equal rows */
+          auto-rows-fr                         
+          lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]  
           gap-4 w-full h-full
         "
       >
@@ -48,11 +48,11 @@ Front-end-leaning full-stack developer who loves turning rough ideas into polish
   />
 </WobbleCard>
 
-        <WobbleCard
+        {/* <WobbleCard
           containerClassName="col-span-1 lg:col-span-3 h-full bg-blue-900"
           className="py-8"
-        >
-          <div className="">
+        > */}
+          <div className="col-span-1 lg:col-span-3  h-full rounded-2xl p-8 ">
             <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
 Tech Stack            </h2>
             <div className="mt-6">
@@ -60,7 +60,7 @@ Tech Stack            </h2>
 
             </div>
           </div>
-        </WobbleCard>
+        {/* </WobbleCard> */}
       </div>
   </div>
       </div>

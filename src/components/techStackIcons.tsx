@@ -1,10 +1,11 @@
 "use client";
 import * as Tabler from "@tabler/icons-react";
 import type { ElementType } from "react";
-// react-icons packs (pick what you need)
-import { DiPostgresql,DiJava,DiScrum   } from "react-icons/di";
-import { BiLogoAws } from "react-icons/bi";
+import { motion } from "framer-motion";
 
+// react-icons packs (pick what you need)
+import { DiPostgresql, DiJava, DiScrum } from "react-icons/di";
+import { BiLogoAws } from "react-icons/bi";
 import {
   SiMysql,
   SiMongodb,
@@ -17,7 +18,7 @@ import {
   SiFigma,
   SiBitbucket,
   SiExpress,
-  SiCplusplus,   // ⬅️ add
+  SiCplusplus,
 } from "react-icons/si";
 
 const ICONS = {
@@ -36,10 +37,10 @@ const ICONS = {
   SiFigma,
   SiBitbucket,
   SiExpress,
-    DiJava,
-    SiCplusplus,
-    DiScrum,
-    BiLogoAws
+  DiJava,
+  SiCplusplus,
+  DiScrum,
+  BiLogoAws,
 } as const;
 
 type Item = { name: string; icon: keyof typeof ICONS | string };
@@ -66,37 +67,53 @@ const ITEMS: Item[] = [
 
   // Databases & Tools (mix)
   { name: "PostgreSQL", icon: "DiPostgresql" }, // react-icons
-  { name: "MySQL", icon: "SiMysql" },           // react-icons
-  { name: "MongoDB", icon: "SiMongodb" },       // react-icons
-  { name: "Supabase", icon: "SiSupabase" },     // react-icons
+  { name: "MySQL", icon: "SiMysql" }, // react-icons
+  { name: "MongoDB", icon: "SiMongodb" }, // react-icons
+  { name: "Supabase", icon: "SiSupabase" }, // react-icons
   { name: "Git", icon: "IconBrandGit" },
   { name: "GitHub", icon: "IconBrandGithub" },
-  { name: "Bitbucket", icon: "SiBitbucket" },   // react-icons
-  { name: "Jira", icon: "SiJira" },             // react-icons
-  { name: "Postman", icon: "SiPostman" },       // react-icons
-  { name: "Figma", icon: "SiFigma" },           // react-icons
+  { name: "Bitbucket", icon: "SiBitbucket" }, // react-icons
+  { name: "Jira", icon: "SiJira" }, // react-icons
+  { name: "Postman", icon: "SiPostman" }, // react-icons
+  { name: "Figma", icon: "SiFigma" }, // react-icons
 
   // Cloud & DevOps (react-icons brands)
   { name: "AWS", icon: "BiLogoAws" },
   { name: "Kubernetes", icon: "SiKubernetes" },
   { name: "Docker", icon: "SiDocker" },
-  { name: "CI/CD", icon: "IconGitMerge" },      // Tabler generic fits well
-  { name: "Agile/Scrum", icon: "DiScrum" },  // Tabler generic
+  { name: "CI/CD", icon: "IconGitMerge" }, // Tabler generic fits well
+  { name: "Agile/Scrum", icon: "DiScrum" }, // react-icons
 ];
 
 export default function TechStackIcons() {
   return (
     <div className="flex flex-wrap gap-3 relative z-10">
-      {ITEMS.map((t) => {
-        // look up in our combined registry; fall back to a generic Tabler icon
+      {ITEMS.map((t, i) => {
         // look up icon in our combined registry; fall back to a generic Tabler icon
         const IconCmp: ElementType =
           ((ICONS as unknown) as Record<string, ElementType>)[t.icon] ||
           Tabler.IconCode;
+
+        // small per-item movement so they wobble within the card without hitting its border
+        const dx = 3 + (i % 3); // 3..5px
+        const dy = 2 + (i % 4); // 2..5px
+
         const id = `tip-${t.name.replace(/\W/g, "").toLowerCase()}`;
 
         return (
-          <div key={t.name} className="group relative">
+          <motion.div
+            key={t.name}
+            className="group relative"
+            whileHover={{ x: 0, y: 0, transition: { duration: 0.2 } }}
+
+            animate={{ x: [0, dx, 0, -dx, 0], y: [0, -dy, 0, dy, 0] }}
+            transition={{
+              duration: 5 + (i % 3),
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.1,
+            }}
+          >
             {/* glass, full-rounded chip */}
             <div
               className="h-14 w-14 rounded-full border border-white/15
@@ -122,9 +139,23 @@ export default function TechStackIcons() {
             >
               {t.name}
             </div>
-          </div>
+          </motion.div>
         );
       })}
+    </div>
+  );
+}
+
+// Example usage (important bit: add overflow-hidden so wobble stays inside the bordered card)
+export function TechStackCard() {
+  return (
+    <div className="col-span-1 lg:col-span-3 h-full border border-white/10 rounded-2xl p-8 overflow-hidden">
+      <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
+        Tech Stack
+      </h2>
+      <div className="mt-6">
+        <TechStackIcons />
+      </div>
     </div>
   );
 }

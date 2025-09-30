@@ -23,14 +23,13 @@ export default function HomeSection() {
         </div>
       </div>
  <div className=" flex items-center justify-center">
-      <TextHoverEffect text="DISHA's WORLD" />
     </div>
       {/* Card wrapper (full screen width) */}
       <div className="flex items-center justify-center">
         
         <TextRevealCard
-          text="Exploring the code universe"
-          revealText="Designing stellar experiences"
+          text="DISHA JADAV"
+          revealText="dishaa.jadav"
         >
           {/* <TextRevealCardDescription>
             Welcome aboard my cosmic portfolio!

@@ -112,7 +112,7 @@ export const TextRevealCard = ({
   {/* Base text clipped from left */}
   <div className="overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,white,transparent)] relative w-full">
     <motion.p
-      className="text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent animate-pulse bg-white/20 whitespace-nowrap"
+      className="text-base sm:text-[3rem] py-10 font-bold bg-clip-text text-transparent  bg-white/20 whitespace-nowrap"
       style={{ clipPath: `inset(0 0 0 ${widthPercentage}%)` }} 
     >
       {text}

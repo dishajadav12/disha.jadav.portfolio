@@ -30,12 +30,12 @@
 /* Use the SVG in `public/images/blue-bg.svg` as a fixed site-wide background.
    Placing it on `html` ensures it remains constant while pages scroll. */
 html {
-  background-color: var(--background);
-  background-image: url('/images/blue-bg.svg');
+  background-color: #000f1d;
+  /* background-image: url('/images/blue-bg.svg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center top;
-  background-size: cover;
+  background-size: cover; */
   scroll-behavior: smooth;
 }
 
