@@ -54,7 +54,7 @@ export function LinkTree() {
     },
   ];
   return (
-    <div className="fixed top-10 right-4 h-[35rem] w-full">
+    <div className="fixed top-10 right-4 h-[35rem] w-full z-50">
       <FloatingDock
         mobileClassName="translate-y-20" // only for demo, remove for production
         items={links}
