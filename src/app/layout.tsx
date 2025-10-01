@@ -1,7 +1,7 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-
-
+import Particles from "@/components/ui/particles";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -10,15 +10,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`antialiased`}
-      >
-        {children}
+    <html lang="en" className="h-full">
+      <body className="h-full antialiased">
+        {/* GLOBAL particles, once, behind all content */}
+        <div className="pointer-events-none fixed inset-0 -z-10">
+          <Particles
+            particleColors={["#ffffff", "#ffffff"]}
+            particleCount={200}
+            particleSpread={10}
+            speed={0.1}
+            particleBaseSize={100}
+            moveParticlesOnHover
+            alphaParticles={false}
+            disableRotation={false}
+          />
+        </div>
+
+        {/* Your app content */}
+        <div className="relative min-h-screen">{children}</div>
       </body>
     </html>
   );

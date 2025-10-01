@@ -1,48 +1,49 @@
-import Image from "next/image";
+// components/HomeSection.tsx
+"use client"; // ensure client; or use dynamic import for LightRays
+
 import React from "react";
-import {
-  TextRevealCard,
-} from "./ui/text-reveal-card";
-import { TextHoverEffect } from "./ui/text-hover-effect";
+import TextPressure from "./ui/pressure-text";
+import dynamic from "next/dynamic";
+
+// Avoid SSR if LightRays uses window/WebGL
+const LightRays = dynamic(() => import("./ui/light-rays"), { ssr: false });
 
 export default function HomeSection() {
   return (
     <section
       id="home"
-      className="section py-20 flex flex-col items-center justify-center"
+      className="relative h-screen overflow-hidden pb-20 flex flex-col items-center justify-center"
     >
-      {/* Saturn */}
-      <div className="absolute bottom-0 right-20 -z-10">
-        <div className="">
-          <Image
-            src="/images/saturn.svg"
-            alt="Saturn"
-            width={300}
-            height={300}
-          />
-        </div>
-      </div>
- <div className=" flex items-center justify-center">
-    </div>
-      {/* Card wrapper (full screen width) */}
-      <div className="flex items-center justify-center">
-        
-        <TextRevealCard
-          text="DISHA JADAV"
-          revealText="dishaa.jadav"
-        >
-          {/* <TextRevealCardDescription>
-            Welcome aboard my cosmic portfolio!
-          </TextRevealCardDescription> */}
-        </TextRevealCard>
-        {/* I navigate the universe of full-stack development, building stellar experiences and launching scalable web applications. Buckle up and explore my galaxy of projects. */}
+      {/* Light rays overlay ONLY for the first viewport */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#00ffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="w-full h-full"
+        />
       </div>
 
-      {/* UFO */}
-      <div className="absolute top-18 left-10 -z-10">
-        <div className="motion-safe:animate-pulse hover:[animation-play-state:paused]">
-          <Image src={"/images/ufo.svg"} alt="" width={300} height={300} />
-        </div>
+      {/* Content above the rays */}
+      <div className="relative z-10 w-[90%]">
+        <TextPressure
+          text="Disha"
+          flex
+          alpha={false}
+          stroke={false}
+          width
+          weight
+          italic
+          textColor="#ffffff"
+          strokeColor="#ff0000"
+          minFontSize={36}
+        />
       </div>
     </section>
   );

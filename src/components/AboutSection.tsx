@@ -7,9 +7,6 @@ export default function AboutSection() {
   return (
     <section id="about" className="section ">
       <div className="flex justify-end mr-20">
-              <div className="absolute -left-40 -z-10 rotate-[20deg]">
-        <Image src={"/images/rocket.svg"} alt="" width={800} height={800} />
-      </div>
    <div className="w-[70%] h-[680px] mt-20 overflow-hidden p-4">
       <div
         className="

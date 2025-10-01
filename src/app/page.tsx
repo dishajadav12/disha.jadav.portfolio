@@ -10,10 +10,12 @@ import FloatingCloud from "@/components/FloatingCloud";
 import { LinkTree } from "@/components/linkTree";
 import Footer from "@/components/footer";
 import Reveal from "@/components/reveal";
+import LightRays from "@/components/ui/light-rays";
 
 export default function Home() {
   return (
     <main className="font-sans antialiased mx-10">
+    
       <LinkTree />
       <FloatingCloud />
       <Navbar />
