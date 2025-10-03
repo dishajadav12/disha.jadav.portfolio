@@ -8,7 +8,7 @@ const links = [
   { id: 'education', label: 'Education' },
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'contact', label: "Let's Contact" },
 ];
 
 export default function Navbar() {

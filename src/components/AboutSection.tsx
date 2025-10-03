@@ -1,67 +1,41 @@
-import Image from "next/image";
 import React from "react";
-import { WobbleCard } from "./ui/wobble-card";
+import Image from "next/image";
 import TechStackIcons from "./techStackIcons";
+import MagicBento, { ParticleCard } from "./ui/magic-bento";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="section ">
-      <div className="flex justify-end mr-20">
-   <div className="w-[70%] h-[680px] mt-20 overflow-hidden p-4">
-      <div
-        className="
-          grid grid-cols-1 lg:grid-cols-3
-          auto-rows-fr                         
-          lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)]  
-          gap-4 w-full h-full
-        "
-      >
-        <WobbleCard
-          containerClassName="col-span-1 lg:col-span-2 h-full bg-[#001939]"
-          className="py-8"
-        >
-          <div className="max-w-xs">
-            <h2 className="text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              Hi, I’m Disha Jadav 
-            </h2>
-            <p className="mt-4 text-left text-base/6 text-neutral-200">
-             — I build clean, fast web apps.
-            </p>
-            <p className="mt-10 text-left text-base/6 text-neutral-200">
-Front-end-leaning full-stack developer who loves turning rough ideas into polished, accessible experiences - now weaving AI/LLM features into intuitive UIs            </p>
-          </div>
-        </WobbleCard>
+    <section id="about" className="section min-h-screen flex flex-col items-center py-20">
 
-      <WobbleCard
-  containerClassName="col-span-1 bg-[#0375a2] saturate-0"
-  className="relative min-h-64 p-0 overflow-hidden rounded-2xl"
->
-  <Image
-    src="/images/disha.jpeg"
-    alt="disha"
-    fill
-    className="object-cover "
-    priority
-  />
-</WobbleCard>
 
-        {/* <WobbleCard
-          containerClassName="col-span-1 lg:col-span-3 h-full bg-blue-900"
-          className="py-8"
-        > */}
-          <div className="col-span-1 lg:col-span-3  h-full rounded-2xl p-8 ">
-            <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-Tech Stack            </h2>
-            <div className="mt-6">
-                    <TechStackIcons />
+      {/* Pass dynamic cards to MagicBento below the intro */}
+      <div className="mt-12 w-full">
+        <MagicBento
+          textAutoHide={true}
+          enableStars={true}
+          enableSpotlight={true}
+          enableBorderGlow={true}
+          enableTilt={true}
+          enableMagnetism={true}
+          clickEffect={true}
+          spotlightRadius={300}
+          particleCount={12}
+          glowColor="0, 255, 255"
+          cards={[
+            { title: 'About Me' },
+            { title: " Hi, I'm Disha — a Front-end Engineer & UI Enthusiast. I specialize in building fast"},
+            { title: " Over the past few years, I’ve worked across teams turning complex problems into elegant performant interfaces. I balance clean code, design detail, and just-enough animation to spark delight." },
+            { title: 'Automation', description: 'Streamline workflows', label: 'Efficiency' },
+                        { title: 'Automation', description: 'Streamline workflows', label: 'Efficiency' },
+                                                { title: 'Automation', description: 'Streamline workflows', label: 'Efficiency' },
 
+
+          ]}
+        />
+         <div className="w-full h-96 flex items-center justify-center">
+              <TechStackIcons />
             </div>
-          </div>
-        {/* </WobbleCard> */}
       </div>
-  </div>
-      </div>
-
     </section>
   );
 }
