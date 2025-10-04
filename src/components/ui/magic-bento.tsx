@@ -9,7 +9,7 @@ export interface BentoCardProps {
   /** Optional title/description (kept for text cards) */
   title?: string;
   description?: string;
-  /** NEW: any React content (images, components, etc.). If present, it renders instead of title/description */
+  /** Any React content (images, components, etc.). If present, it renders instead of title/description */
   content?: React.ReactNode;
 
   textAutoHide?: boolean;
@@ -36,6 +36,8 @@ const DEFAULT_SPOTLIGHT_RADIUS = 300;
 const DEFAULT_GLOW_COLOR = '0, 255, 255';
 const MOBILE_BREAKPOINT = 768;
 
+/* ---------------------------------- utils ---------------------------------- */
+
 const createParticleElement = (x: number, y: number, color: string = DEFAULT_GLOW_COLOR): HTMLDivElement => {
   const el = document.createElement('div');
   el.className = 'particle';
@@ -59,7 +61,13 @@ const calculateSpotlightValues = (radius: number) => ({
   fadeDistance: radius * 0.75
 });
 
-const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: number, glow: number, radius: number) => {
+const updateCardGlowProperties = (
+  card: HTMLElement,
+  mouseX: number,
+  mouseY: number,
+  glow: number,
+  radius: number
+) => {
   const rect = card.getBoundingClientRect();
   const relativeX = ((mouseX - rect.left) / rect.width) * 100;
   const relativeY = ((mouseY - rect.top) / rect.height) * 100;
@@ -70,20 +78,45 @@ const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: num
   card.style.setProperty('--glow-radius', `${radius}px`);
 };
 
-// quick heuristic to detect if a React node is (or contains) an image element
+/** --- Strongly-typed image detector (no `any`) --- */
+const isReactElement = (node: unknown): node is React.ReactElement => {
+  return React.isValidElement(node as React.ReactElement);
+};
+
+type ImageyProps = {
+  src?: unknown;
+  srcSet?: unknown;
+  children?: React.ReactNode;
+};
+
+const propsHasImageHints = (props: unknown): props is ImageyProps => {
+  if (typeof props !== 'object' || props === null) return false;
+  const rec = props as Record<string, unknown>;
+  return 'src' in rec || 'srcSet' in rec || 'children' in rec;
+};
+
 const contentHasImage = (content: React.ReactNode): boolean => {
-  if (Array.isArray(content)) return content.some(c => contentHasImage(c));
-  if (React.isValidElement(content)) {
-    const el: any = content;
+  if (Array.isArray(content)) return content.some((c) => contentHasImage(c));
+
+  if (isReactElement(content)) {
     // native <img>
-    if (el.type === 'img') return true;
-    // next/image or custom image components usually have a `src` prop
-    if (el.props && (el.props.src || el.props.srcSet)) return true;
-    // check children recursively
-    return contentHasImage(el.props?.children);
+    if (content.type === 'img') return true;
+
+    // Next/Image or custom components that expose src/srcSet
+    if (propsHasImageHints(content.props)) {
+      if (typeof (content.props as ImageyProps).src !== 'undefined') return true;
+      if (typeof (content.props as ImageyProps).srcSet !== 'undefined') return true;
+
+      // recurse into children
+      if ((content.props as ImageyProps).children) {
+        return contentHasImage((content.props as ImageyProps).children);
+      }
+    }
   }
   return false;
 };
+
+/* ------------------------------- Particle Card ------------------------------ */
 
 export const ParticleCard: React.FC<{
   children: React.ReactNode;
@@ -108,7 +141,7 @@ export const ParticleCard: React.FC<{
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement[]>([]);
-  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+  const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const isHoveredRef = useRef(false);
   const memoizedParticles = useRef<HTMLDivElement[]>([]);
   const particlesInitialized = useRef(false);
@@ -129,7 +162,7 @@ export const ParticleCard: React.FC<{
     timeoutsRef.current = [];
     magnetismAnimationRef.current?.kill();
 
-    particlesRef.current.forEach(particle => {
+    particlesRef.current.forEach((particle) => {
       gsap.to(particle, {
         scale: 0,
         opacity: 0,
@@ -332,6 +365,8 @@ export const ParticleCard: React.FC<{
   );
 };
 
+/* ------------------------------ GlobalSpotlight ----------------------------- */
+
 const GlobalSpotlight: React.FC<{
   gridRef: React.RefObject<HTMLDivElement | null>;
   disableAnimations?: boolean;
@@ -383,16 +418,12 @@ const GlobalSpotlight: React.FC<{
       const mouseInside =
         rect && e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
 
-      isInsideSection.current = mouseInside || false;
+      isInsideSection.current = !!mouseInside;
       const cards = gridRef.current.querySelectorAll('.card');
 
       if (!mouseInside) {
-        gsap.to(spotlightRef.current, {
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-        cards.forEach(card => {
+        gsap.to(spotlightRef.current, { opacity: 0, duration: 0.3, ease: 'power2.out' });
+        cards.forEach((card) => {
           (card as HTMLElement).style.setProperty('--glow-intensity', '0');
         });
         return;
@@ -401,7 +432,7 @@ const GlobalSpotlight: React.FC<{
       const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius);
       let minDistance = Infinity;
 
-      cards.forEach(card => {
+      cards.forEach((card) => {
         const cardElement = card as HTMLElement;
         const cardRect = cardElement.getBoundingClientRect();
         const centerX = cardRect.left + cardRect.width / 2;
@@ -445,15 +476,11 @@ const GlobalSpotlight: React.FC<{
 
     const handleMouseLeave = () => {
       isInsideSection.current = false;
-      gridRef.current?.querySelectorAll('.card').forEach(card => {
+      gridRef.current?.querySelectorAll('.card').forEach((card) => {
         (card as HTMLElement).style.setProperty('--glow-intensity', '0');
       });
       if (spotlightRef.current) {
-        gsap.to(spotlightRef.current, {
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
+        gsap.to(spotlightRef.current, { opacity: 0, duration: 0.3, ease: 'power2.out' });
       }
     };
 
@@ -469,6 +496,8 @@ const GlobalSpotlight: React.FC<{
 
   return null;
 };
+
+/* ------------------------------- Grid wrapper ------------------------------- */
 
 const BentoCardGrid: React.FC<{
   children: React.ReactNode;
@@ -497,6 +526,8 @@ const useMobileDetection = () => {
 
   return isMobile;
 };
+
+/* -------------------------------- MagicBento ------------------------------- */
 
 const MagicBento: React.FC<BentoProps> = ({
   textAutoHide = true,
@@ -532,45 +563,45 @@ const MagicBento: React.FC<BentoProps> = ({
             --cyan-primary: rgba(0, 255, 255, 1);
             --cyan-glow: rgba(0, 255, 255, 0.18);
             --cyan-border: rgba(0, 255, 255, 0.85);
-              margin-left: auto !important;
-    margin-right: auto !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
           }
-          
+
           .card-responsive {
             grid-template-columns: 1fr;
             width: 90%;
             margin: 0 auto;
             padding: 0.5rem;
           }
-          
+
           @media (min-width: 600px) {
             .card-responsive {
               grid-template-columns: repeat(2, 1fr);
             }
           }
-          
+
           @media (min-width: 1024px) {
             .card-responsive {
               grid-template-columns: repeat(4, 1fr);
             }
-            
-            /* ⬇️ IMPORTANT: keep your original special positions */
+
+            /* keep your original special positions */
             .card-responsive .card:nth-child(3) {
               grid-column: span 2;
               grid-row: span 2;
             }
-            
+
             .card-responsive .card:nth-child(4) {
               grid-column: 1 / span 2;
               grid-row: 2 / span 2;
             }
-            
+
             .card-responsive .card:nth-child(6) {
               grid-column: 4;
               grid-row: 3;
             }
           }
-          
+
           .card--border-glow::after {
             content: '';
             position: absolute;
@@ -589,15 +620,15 @@ const MagicBento: React.FC<BentoProps> = ({
             transition: opacity 0.3s ease;
             z-index: 1;
           }
-          
+
           .card--border-glow:hover::after {
             opacity: 1;
           }
-          
+
           .card--border-glow:hover {
             box-shadow: 0 4px 20px rgba(0, 255, 255, 0.12), 0 0 30px rgba(${glowColor}, 0.2);
           }
-          
+
           .particle::before {
             content: '';
             position: absolute;
@@ -609,11 +640,11 @@ const MagicBento: React.FC<BentoProps> = ({
             border-radius: 50%;
             z-index: -1;
           }
-          
+
           .particle-container:hover {
             box-shadow: 0 4px 20px rgba(0, 255, 255, 0.08), 0 0 30px rgba(${glowColor}, 0.2);
           }
-          
+
           .text-clamp-1 {
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -622,7 +653,7 @@ const MagicBento: React.FC<BentoProps> = ({
             overflow: hidden;
             text-overflow: ellipsis;
           }
-          
+
           .text-clamp-2 {
             display: -webkit-box;
             -webkit-box-orient: vertical;
@@ -631,7 +662,7 @@ const MagicBento: React.FC<BentoProps> = ({
             overflow: hidden;
             text-overflow: ellipsis;
           }
-          
+
           /* ensure ANY content fits inside the tile */
           .card__body {
             min-height: 0;
@@ -651,7 +682,7 @@ const MagicBento: React.FC<BentoProps> = ({
             max-width: 100%;
             max-height: 100%;
           }
-          
+
           @media (max-width: 599px) {
             .card-responsive {
               grid-template-columns: 1fr;
@@ -659,7 +690,7 @@ const MagicBento: React.FC<BentoProps> = ({
               margin: 0 auto;
               padding: 0.5rem;
             }
-            
+
             .card-responsive .card {
               width: 100%;
               min-height: 180px;
@@ -685,7 +716,7 @@ const MagicBento: React.FC<BentoProps> = ({
               enableBorderGlow ? 'card--border-glow' : ''
             }`;
 
-            const cardStyle = {
+            const cardStyle: React.CSSProperties = {
               backgroundColor: card.color || 'var(--background-dark)',
               borderColor: 'var(--border-color)',
               color: 'var(--white)',
@@ -704,18 +735,20 @@ const MagicBento: React.FC<BentoProps> = ({
                 </div>
 
                 {card.content ? (
-                  // Any kind of content fits
-                  <div className="media-fit grow">
-                    {card.content}
-                  </div>
+                  <div className="media-fit grow">{card.content}</div>
                 ) : (
-                  // Text fallback with clamps so it never spills
                   <div className="card__content flex flex-col relative text-white grow">
-                    <h3 className={`card__title font-normal text-base m-0 mb-1 ${card.textAutoHide ?? textAutoHide ? 'text-clamp-1' : ''}`}>
+                    <h3
+                      className={`card__title font-normal text-base m-0 mb-1 ${
+                        card.textAutoHide ?? textAutoHide ? 'text-clamp-1' : ''
+                      }`}
+                    >
                       {card.title}
                     </h3>
                     <p
-                      className={`card__description text-xs leading-5 opacity-90 ${card.textAutoHide ?? textAutoHide ? 'text-clamp-2' : ''}`}
+                      className={`card__description text-xs leading-5 opacity-90 ${
+                        card.textAutoHide ?? textAutoHide ? 'text-clamp-2' : ''
+                      }`}
                     >
                       {card.description}
                     </p>
