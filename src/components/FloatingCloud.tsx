@@ -145,6 +145,7 @@ export default function FloatingCloud({
         width={width}
         height={height}
         priority
+        className="animate-ping"
       />
     </div>
   );

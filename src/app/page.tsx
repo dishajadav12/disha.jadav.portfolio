@@ -14,10 +14,10 @@ import LightRays from "@/components/ui/light-rays";
 
 export default function Home() {
   return (
-    <main className="font-sans antialiased mx-10">
+    <main className="font-sans antialiased">
     
       <LinkTree />
-      <FloatingCloud />
+      {/* <FloatingCloud /> */}
       <Navbar />
 
       {/* Hero usually visible immediately; you may skip reveal here */}

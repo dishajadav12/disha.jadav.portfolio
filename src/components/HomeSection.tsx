@@ -4,6 +4,7 @@
 import React from "react";
 import TextPressure from "./ui/pressure-text";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 // Avoid SSR if LightRays uses window/WebGL
 const LightRays = dynamic(() => import("./ui/light-rays"), { ssr: false });
@@ -31,7 +32,7 @@ export default function HomeSection() {
       </div>
 
       {/* Content above the rays */}
-      <div className="relative z-10 w-[90%]">
+      <div className="relative mt-40 z-10 w-[90%]">
         <TextPressure
           text="Disha"
           flex
@@ -44,6 +45,17 @@ export default function HomeSection() {
           strokeColor="#ff0000"
           minFontSize={36}
         />
+         
+      </div>
+      <div className="relative z-10 mt-16">
+         <Image
+                src={'/images/cloud.svg'}
+                alt="floating cloud"
+                width={150}
+                height={150}
+                className="animate-pulse"
+                priority
+              />
       </div>
     </section>
   );

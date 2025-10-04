@@ -1,41 +1,85 @@
 import React from "react";
 import Image from "next/image";
+import MagicBento from "./ui/magic-bento";
 import TechStackIcons from "./techStackIcons";
-import MagicBento, { ParticleCard } from "./ui/magic-bento";
+import WavesBackdrop from "./ui/wave-animation";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="section min-h-screen flex flex-col items-center py-20">
+    <section id="about" className="min-h-screen flex flex-col items-center py-6">
+      {/* remove the top-level WavesBackdrop */}
+
+    <WavesBackdrop opacity={0.5} height="54vh" />
 
 
-      {/* Pass dynamic cards to MagicBento below the intro */}
-      <div className="mt-12 w-full">
+      <div className="mt-12 w-full max-w-[74rem] mx-auto px-4">
+        
         <MagicBento
-          textAutoHide={true}
-          enableStars={true}
-          enableSpotlight={true}
-          enableBorderGlow={true}
-          enableTilt={true}
-          enableMagnetism={true}
-          clickEffect={true}
+          textAutoHide
+          enableStars
+          enableSpotlight
+          enableBorderGlow
+          enableTilt
+          enableMagnetism
+          clickEffect
           spotlightRadius={300}
           particleCount={12}
           glowColor="0, 255, 255"
           cards={[
-            { title: 'About Me' },
-            { title: " Hi, I'm Disha — a Front-end Engineer & UI Enthusiast. I specialize in building fast"},
-            { title: " Over the past few years, I’ve worked across teams turning complex problems into elegant performant interfaces. I balance clean code, design detail, and just-enough animation to spark delight." },
-            { title: 'Automation', description: 'Streamline workflows', label: 'Efficiency' },
-                        { title: 'Automation', description: 'Streamline workflows', label: 'Efficiency' },
-                                                { title: 'Automation', description: 'Streamline workflows', label: 'Efficiency' },
-
-
+            {
+              content: (
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/disha.jpeg"
+                    alt="Disha portrait"
+                    fill
+                    priority
+                    style={{ objectFit: "cover", borderRadius: 12 }}
+                  />
+                </div>
+              ),
+            },
+            {
+              label: "Automation",
+              title: "Workflow wins",
+              description:
+                "Tiny CLIs, codegen, and CI gates that keep teams moving without friction.",
+            },
+            {
+              content: (
+                <div className="w-full h-full z-50">
+                  <TechStackIcons />
+                </div>
+              ),
+            },
+            {
+              label: "About Me",
+              title: "Hi, I'm Disha — a Front-end Engineer & UI Enthusiast.",
+              description:
+                "I specialize in building fast, accessible, and delightful UIs. I turn complex problems into elegant, performant interfaces with a design-systems mindset.",
+            },
+            {
+              label: "Focus",
+              title: "Performance & DX",
+              description:
+                "Ship lean UI, measure, iterate. Vite/Next, React 18, RSC, TanStack, Tailwind, shadcn/ui.",
+            },
+            {
+              content: (
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/disha.jpeg"
+                    alt="Disha portrait 2"
+                    fill
+                    style={{ objectFit: "cover", borderRadius: 12 }}
+                  />
+                </div>
+              ),
+            },
           ]}
         />
-         <div className="w-full h-96 flex items-center justify-center">
-              <TechStackIcons />
-            </div>
       </div>
+      
     </section>
   );
 }
