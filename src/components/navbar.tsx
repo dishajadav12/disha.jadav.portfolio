@@ -5,8 +5,7 @@ import React, { useEffect, useState } from 'react';
 const links = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
-  { id: 'education', label: 'Education' },
-  { id: 'experience', label: 'Experience' },
+  { id: 'journey', label: 'Journey' },
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: "Let's Contact" },
 ];

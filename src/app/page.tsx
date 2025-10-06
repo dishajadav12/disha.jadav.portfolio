@@ -2,15 +2,12 @@ import React from "react";
 import Navbar from "@/components/navbar";
 import HomeSection from "@/components/HomeSection";
 import AboutSection from "@/components/AboutSection";
-import EducationSection from "@/components/EducationSection";
-import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
-import FloatingCloud from "@/components/FloatingCloud";
 import { LinkTree } from "@/components/linkTree";
 import Footer from "@/components/footer";
 import Reveal from "@/components/reveal";
-import LightRays from "@/components/ui/light-rays";
+import JourneySection from "@/components/JourneySaction";
 
 export default function Home() {
   return (
@@ -28,11 +25,7 @@ export default function Home() {
       </Reveal>
 
       <Reveal delay={100}>
-        <EducationSection />
-      </Reveal>
-
-      <Reveal delay={200}>
-        <ExperienceSection />
+        <JourneySection />
       </Reveal>
 
       {/* Example of different direction */}

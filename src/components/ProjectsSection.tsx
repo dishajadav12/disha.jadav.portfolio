@@ -4,9 +4,6 @@ import React from 'react';
 export default function ProjectsSection() {
   return (
     <section id="projects" className="section container  py-20">
-       <div className='absolute right-10 opacity-95 -mt-64 -z-10 '>
-                <Image src={'/images/robot.svg'} alt='' width={300} height={1000}/>
-              </div>
       <h2 className="text-2xl font-semibold">Projects</h2>
       <div className="grid gap-6 mt-6 sm:grid-cols-2">
         <article className="p-4 border rounded">
