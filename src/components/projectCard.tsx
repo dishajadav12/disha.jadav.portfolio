@@ -124,7 +124,7 @@ const content = [
 ];
 export function ProjectCards() {
   return (
-    <div className="w-full z-50 py-4">
+    <div className="w-full mt-20 py-4">
       <StickyScroll content={content} />
     </div>
   );
