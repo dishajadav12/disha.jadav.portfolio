@@ -2,7 +2,6 @@
 "use client"; // ensure client; or use dynamic import for LightRays
 
 import React from "react";
-import TextPressure from "./ui/pressure-text";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -33,19 +32,7 @@ export default function HomeSection() {
 
       {/* Content above the rays */}
       <div className="relative mt-40 z-10 w-[90%]">
-        <TextPressure
-          text="Disha"
-          flex
-          alpha={false}
-          stroke={false}
-          width
-          weight
-          italic
-          textColor="#ffffff"
-          strokeColor="#ff0000"
-          minFontSize={36}
-        />
-         
+      D I S H A 
       </div>
       <div className="relative z-10 mt-16">
          <Image

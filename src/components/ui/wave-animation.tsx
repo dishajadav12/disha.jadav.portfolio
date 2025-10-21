@@ -16,7 +16,7 @@ const WavesBackdrop: React.FC<{
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute left-0 right-0 top-1/2 -translate-y-1/2 -z-10 ${className || ""}`}
+      className={`pointer-events-none -rotate-12 absolute left-0 right-0 top-1/2 -translate-y-1/2 -z-10 ${className || ""}`}
       style={{ opacity, height }}
     >
       <svg viewBox="0 0 1800 100" preserveAspectRatio="none" className="w-full h-full">
