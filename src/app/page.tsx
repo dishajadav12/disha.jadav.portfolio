@@ -11,7 +11,7 @@ import JourneySection from "@/components/JourneySaction";
 
 export default function Home() {
   return (
-    <main className="font-sans antialiased">
+    <main className="font-sans antialiased overflow-hidden">
     
       <LinkTree />
       {/* <FloatingCloud /> */}

@@ -55,11 +55,10 @@ export default function TypingTest() {
   }
   return (
     <div
-      style={{ position: "relative", zIndex: 2147483647, pointerEvents: "auto" }}
-      className="flex flex-col justify-center items-center w-7xl"
+      className="relative h-screen overflow-hidden pb-20 flex flex-col items-center justify-center"
     >
       <form
-        className="max-w-md w-full flex flex-col justify-center items-center gap-4 p-4 bg-white/10 rounded-lg"
+        className=" flex flex-col overflow-hidden justify-center items-center gap-4 p-4 bg-white/10 rounded-lg"
         onSubmit={onSubmit}
         onPointerDownCapture={(e) => e.stopPropagation()}
         onClickCapture={(e) => e.stopPropagation()}
