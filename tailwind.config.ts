@@ -7,7 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      
+          fontFamily: {
+        cursive: ['"La Belle Aurore"', 'cursive'],
+      },
       colors: {
         background: "#0a0890",
         foreground: "var(--foreground)",

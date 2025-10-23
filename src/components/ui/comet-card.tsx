@@ -25,8 +25,8 @@ export const CometCard = ({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
+  const mouseXSpring = useSpring(x, { stiffness: 200, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 200, damping: 30 });
 
   const rotateX = useTransform(
     mouseYSpring,
@@ -50,27 +50,24 @@ export const CometCard = ({
     [`${translateDepth}px`, `-${translateDepth}px`],
   );
 
+  // Subtle, neutral glare (no overlay blend)
   const glareX = useTransform(mouseXSpring, [-0.5, 0.5], [0, 100]);
   const glareY = useTransform(mouseYSpring, [-0.5, 0.5], [0, 100]);
-
-  const glareBackground = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.75) 20%, rgba(255, 255, 255, 0) 80%)`;
+  const glareBackground = useMotionTemplate`
+    radial-gradient(
+      circle at ${glareX}% ${glareY}%,
+      rgba(255, 255, 255, 0.35) 8%,
+      rgba(255, 255, 255, 0.18) 18%,
+      rgba(255, 255, 255, 0.00) 60%
+    )`;
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
-
     const rect = ref.current.getBoundingClientRect();
-
-    const width = rect.width;
-    const height = rect.height;
-
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
+    x.set(mouseX / rect.width - 0.5);
+    y.set(mouseY / rect.height - 0.5);
   };
 
   const handleMouseLeave = () => {
@@ -90,7 +87,8 @@ export const CometCard = ({
           translateX,
           translateY,
           boxShadow:
-            "rgba(0, 0, 0, 0.01) 0px 520px 146px 0px, rgba(0, 0, 0, 0.04) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.29) 0px 21px 46px 0px",
+            // keep depth but with slightly cooler, subtle opacity
+            "rgba(0, 0, 0, 0.02) 0px 520px 146px 0px, rgba(0, 0, 0, 0.05) 0px 333px 133px 0px, rgba(0, 0, 0, 0.26) 0px 83px 83px 0px, rgba(0, 0, 0, 0.30) 0px 21px 46px 0px",
         }}
         initial={{ scale: 1, z: 0 }}
         whileHover={{
@@ -101,11 +99,12 @@ export const CometCard = ({
         className="relative rounded-2xl"
       >
         {children}
+        {/* Removed mix-blend-overlay to avoid muddy/gray cast */}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px] mix-blend-overlay"
+          className="pointer-events-none absolute inset-0 z-50 h-full w-full rounded-[16px]"
           style={{
             background: glareBackground,
-            opacity: 0.6,
+            opacity: 0.35,
           }}
           transition={{ duration: 0.2 }}
         />

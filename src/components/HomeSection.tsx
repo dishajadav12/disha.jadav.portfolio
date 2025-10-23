@@ -4,6 +4,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { Typewriter } from "react-simple-typewriter";
+
 
 // Avoid SSR if LightRays uses window/WebGL
 const LightRays = dynamic(() => import("./ui/light-rays"), { ssr: false });
@@ -31,15 +33,37 @@ export default function HomeSection() {
       </div>
 
       {/* Content above the rays */}
-      <div className="relative mt-40 z-10 w-[90%]">
+       <div className="relative mt-44 z-10 w-[90%] text-lg md:text-2xl text-center birthstone-regular">
+      Portfolio of 
+      </div>
+      <div className="relative my-10 z-10 w-[90%] text-3xl md:text-9xl text-center tracking-[2.5rem]">
       D I S H A 
+      </div>
+       <div className="relative z-10 w-[90%] text-lg md:text-2xl text-center text-gray-400/30">
+        <Typewriter
+          words={[
+            "Software Engineer",
+            "Frontend Developer",
+            "AI Enthusiast",
+            "Exploring Agentic world of AI",
+            "UI/UX Designer",
+            "Grad Student",
+            "Foodieeeee",
+          ]}
+          loop={true}
+          cursor
+          cursorStyle="_"
+          typeSpeed={70}
+          deleteSpeed={50}
+          delaySpeed={1200}
+        />
       </div>
       <div className="relative z-10 mt-16">
          <Image
                 src={'/images/cloud.svg'}
                 alt="floating cloud"
-                width={150}
-                height={150}
+                width={130}
+                height={130}
                 className="animate-pulse"
                 priority
               />

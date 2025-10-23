@@ -3,24 +3,17 @@ import TechStackIcons from "./techStackIcons";
 import WavesBackdrop from "./ui/wave-animation";
 import Image from "next/image";
 import { CometCard } from "./ui/comet-card";
+import { cn } from "@/lib/utils";
 
 export default function AboutSection() {
   return (
-    // CHANGED: cap the section to 700px and make children stretch to fill it
     <section id="about" className="flex flex-col items-center py-6 overflow-hidden">
-      {/* remove the top-level WavesBackdrop */}
-
-      {/* <WavesBackdrop opacity={0.5} height="54vh" /> */}
-
-      {/* CHANGED: make the inner container fill the section height */}
+   
       <div className="mt-12 w-full max-w-[80rem] mx-auto px-4 h-full">
-        {/* NEW: About + Photo Card */}
-        {/* CHANGED: force equal column heights by stretching items and the grid to full height */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10 h-full items-stretch">
-          {/* About copy */}
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 mb-10 h-full items-stretch">
           <div className="lg:col-span-7 h-full">
-            {/* CHANGED: make the card fill the column height */}
-            <div className="h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-6 shadow-sm flex flex-col">
+            <div className="h-full  backdrop-blur p-6 shadow-sm flex flex-col">
             
 
               <h2 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
@@ -49,67 +42,63 @@ export default function AboutSection() {
       </div>
     </div>
            
-              {/* Quick stats / tags */}
            <div className="inline-flex items-center gap-1 px-3 mt-4 py-2 space-x-1.5 rounded-full border border-white/15 bg-white/10 text-xs">
                 <span>✨</span>
-                <span>I love turning ideas into delightful products</span>
+                <span>I love turning ideas into delightful products using these Tech Stack:</span>
               </div>
 
-              {/* optional spacer to push content evenly if needed */}
-              <div className="mt-auto" />
+              <div className="mt-5 flex flex-wrap gap-2">
+                <TechStackIcons />
+              </div>
             </div>
           </div>
 
           {/* Photo card */}
-<div className="lg:col-span-5 h-full">
-  {/* remove overflow-hidden so content isn't cut; keep equal height */}
-  <div className="h-full backdrop-blur p-4 shadow-sm flex flex-col">
-    {/* FIX: use a fixed (smaller) image height instead of flex-1 */}
-    <div>
-      <CometCard>
-      <button
-        type="button"
-        className="my-10 flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border-0 bg-[#1F2121] p-2 saturate-0 md:my-20 md:p-4"
-        aria-label="View invite F7RA"
-        style={{
-          transformStyle: "preserve-3d",
-          transform: "none",
-          opacity: 1,
-        }}
-      >
-        <div className="mx-2 flex-1">
-          <div className="relative mt-2 aspect-[3/4] w-full">
-            <img
-              loading="lazy"
-              className="absolute inset-0 h-full w-full rounded-[16px] bg-[#000000] object-cover contrast-75"
-              alt="Invite background"
-              src="/images/disha.jpg"
-              style={{
-                boxShadow: "rgba(0, 0, 0, 0.05) 0px 5px 6px 0px",
-                opacity: 1,
-              }}
-            />
-          </div>
-        </div>
-        <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-          <div className="text-xs">Comet Invitation</div>
-          <div className="text-xs text-gray-300 opacity-50">#F7RA</div>
-        </div>
-      </button>
-    </CometCard>
-    </div>
 
-  
-  </div>
+<div>
+  <CometCard className="md:my-20 z-50">
+    <button
+      type="button"
+      aria-label="View invite F7RA"
+      className={cn(
+        "flex w-80 cursor-pointer flex-col items-stretch rounded-[16px] border border-[rgba(255,255,255,0.06)]",
+        "bg-[rgb(0,15,29)] p-2 md:p-4", 
+        "shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+      )}
+      style={{
+        transformStyle: "preserve-3d",
+        transform: "none",
+        opacity: 1,
+      }}
+    >
+      <div className="mx-2 flex-1">
+        <div className="relative mt-2 aspect-[3/4] w-full">
+          <Image
+            loading="lazy"
+            alt="Invite background"
+            src="/images/disha.jpeg"
+            fill
+            className="absolute inset-0 rounded-[16px] object-cover"
+            style={{
+              boxShadow: "0 6px 10px rgba(0, 15, 29, 0.4)",
+            }}
+          />
+        </div>
+      </div>
+
+      <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-[rgba(236,246,255,0.95)]">
+        <div className="text-xs">Software Engineer</div>
+        <div className="text-xs text-[rgba(236,246,255,0.6)]">
+          MSSE @ SJSU
+        </div>
+      </div>
+    </button>
+  </CometCard>
 </div>
 
+
         </div>
 
-        {/* (kept) your original TechStackIcons block */}
-        {/* You can remove this if you prefer only the About section above */}
-             <div className="mt-5 flex flex-wrap gap-2">
-                <TechStackIcons />
-              </div>
       </div>
     </section>
   );
