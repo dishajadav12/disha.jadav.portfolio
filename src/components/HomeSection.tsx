@@ -36,7 +36,7 @@ export default function HomeSection() {
        <div className="relative mt-44 z-10 w-[90%] text-lg md:text-2xl text-center birthstone-regular">
       Portfolio of 
       </div>
-      <div className="relative my-10 z-10 w-[90%] text-3xl md:text-9xl text-center tracking-[2.5rem]">
+      <div className="relative my-10 z-10 w-full md:w-[90%] text-3xl md:text-9xl text-center tracking-[1rem] md:tracking-[2.5rem]">
       D I S H A 
       </div>
        <div className="relative z-10 w-[90%] text-lg md:text-2xl text-center text-gray-400/30">
