@@ -2,6 +2,8 @@
 
 import React from "react";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
+import ProjectCarousel from "./carousal";
+import { projects } from "@/lib/project-data";
 
 // const projects = [
 //   {
@@ -123,8 +125,8 @@ const content = [
 ];
 export function ProjectCards() {
   return (
-    <div className="w-full mt-20 py-4">
-      <StickyScroll content={content} />
-    </div>
+  <div className="w-full mt-20 py-4">
+<ProjectCarousel items={projects} />
+</div>
   );
 }
