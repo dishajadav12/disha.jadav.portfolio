@@ -13,15 +13,15 @@ const data = [
           <span className="text-[rgba(0,255,255,1)]"> San José State University</span>, exploring advanced software systems and AI-driven development.
         </p>
         <div className="grid grid-cols-3 gap-4">
-          <img
-            src="https://assets.aceternity.com/templates/startup-1.webp"
+          <Image
+            src="/images/sjsu-1.png"
             alt="startup template"
             width={400}
             height={400}
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(0,255,255,0.1)] md:h-44 lg:h-60"
           />
-          <img
-            src="https://assets.aceternity.com/templates/startup-4.webp"
+          <Image
+            src="/images/sjsu-2.png"
             alt="startup template"
             width={500}
             height={500}
@@ -41,15 +41,15 @@ const data = [
           Built core app and web platform features, gaining hands-on experience with scalable architecture and real-world deployments.
         </p>
         <div className="grid grid-cols-2 gap-4">
-          <img
-            src="https://assets.aceternity.com/pro/hero-sections.png"
+          <Image
+            src="/images/neuralweb-1.png"
             alt="work sample"
             width={500}
             height={500}
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(0,255,255,0.1)] md:h-44 lg:h-60"
           />
-          <img
-            src="https://assets.aceternity.com/features-section.png"
+          <Image
+            src="/images/neuralweb-2.png"
             alt="project preview"
             width={500}
             height={500}
@@ -68,15 +68,15 @@ const data = [
           as part of my academic curriculum — gaining foundational experience in full-stack development, APIs, and agile teamwork.
         </p>
         <div className="grid grid-cols-2 gap-4">
-          <img
-            src="https://assets.aceternity.com/pro/bento-grids.png"
+          <Image
+            src="/images/epistic-2.png"
             alt="internship project"
             width={500}
             height={500}
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(56,189,248,0.15)] md:h-44 lg:h-60"
           />
-          <img
-            src="https://assets.aceternity.com/cards.png"
+          <Image
+            src="/images/epistic-1.png"
             alt="internship project"
             width={500}
             height={500}
@@ -96,15 +96,15 @@ const data = [
           Built a strong foundation in programming, software design, and project-based learning that sparked my passion for full-stack development.
         </p>
         <div className="grid grid-cols-2 gap-4">
-          <img
-            src="https://assets.aceternity.com/templates/startup-2.webp"
+          <Image
+            src="/images/adit-1.png"
             alt="college life"
             width={500}
             height={500}
             className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(0,255,255,0.1)] md:h-44 lg:h-60"
           />
-          <img
-            src="https://assets.aceternity.com/templates/startup-3.webp"
+          <Image
+            src="/images/adit-2.png"
             alt="project work"
             width={500}
             height={500}

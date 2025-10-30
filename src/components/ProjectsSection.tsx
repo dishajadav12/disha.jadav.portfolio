@@ -1,6 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
-import { ProjectCards } from './projectCard';
+import ProjectCards from './projectCard';
 
 export default function ProjectsSection() {
   return (

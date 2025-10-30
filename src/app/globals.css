@@ -75,3 +75,17 @@ a { color: #2563eb; text-decoration: underline; }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;                 /* Chrome/Safari */
 }
+
+/* global.css */
+
+/* Hide scrollbars globally */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Hide scrollbars for WebKit browsers (Chrome, Safari, etc.) */
+*::-webkit-scrollbar {
+  display: none;
+}
+

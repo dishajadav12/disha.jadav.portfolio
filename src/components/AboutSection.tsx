@@ -76,7 +76,7 @@ export default function AboutSection() {
           <Image
             loading="lazy"
             alt="Invite background"
-            src="/images/disha.jpeg"
+            src="/images/disha-portrait.png"
             fill
             className="absolute inset-0 rounded-[16px] object-cover"
             style={{
