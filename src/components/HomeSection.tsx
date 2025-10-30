@@ -33,7 +33,7 @@ export default function HomeSection() {
       </div>
 
       {/* Content above the rays */}
-       <div className="relative mt-44 z-10 w-[90%] text-lg md:text-2xl text-center birthstone-regular">
+       <div className="relative mt-44 z-10 w-[90%] text-lg md:text-2xl text-center pacifico-regular">
       Portfolio of 
       </div>
      <div className="relative my-10 z-10 w-full md:w-[90%] text-center">

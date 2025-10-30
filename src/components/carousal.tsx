@@ -16,11 +16,14 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
   const startX = useRef<number | null>(null);
 
   const count = items?.length ?? 0;
-  const clamp = useCallback((n: number) => (count === 0 ? 0 : (n + count) % count), [count]);
+  const clamp = useCallback(
+    (n: number) => (count === 0 ? 0 : (n + count) % count),
+    [count]
+  );
 
   const prev = useCallback(() => setIndex((i) => clamp(i - 1)), [clamp]);
   const next = useCallback(() => setIndex((i) => clamp(i + 1)), [clamp]);
-  const go   = useCallback((i: number) => setIndex(clamp(i)), [clamp]);
+  const go = useCallback((i: number) => setIndex(clamp(i)), [clamp]);
 
   // Keyboard
   useEffect(() => {
@@ -33,7 +36,9 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
   }, [prev, next]);
 
   // Touch swipe
-  function onTouchStart(e: React.TouchEvent) { startX.current = e.touches[0].clientX; }
+  function onTouchStart(e: React.TouchEvent) {
+    startX.current = e.touches[0].clientX;
+  }
   function onTouchEnd(e: React.TouchEvent) {
     if (startX.current == null) return;
     const dx = e.changedTouches[0].clientX - startX.current;
@@ -52,10 +57,16 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
   const active = hasItems ? items[index] : null;
 
   return (
-    <section className="w-full flex justify-center" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+    <section
+      className="w-full flex justify-center"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       {/* Wrapper: 80% width */}
-      <div className="w-4/5 max-w-6xl mx-auto flex flex-col items-center">
-        <h2 className="text-2xl md:text-3xl font-semibold text-center">Projects</h2>
+      <div className=" mx-auto flex flex-col items-center">
+        <h2 className="text-2xl md:text-3xl font-semibold text-center">
+          Projects
+        </h2>
 
         <div aria-hidden className="h-8" />
 
@@ -79,15 +90,28 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
             </div>
 
             {/* TEXT */}
-            <div key={`text-${index}`} className="order-2 lg:order-none flex flex-col justify-center items-center text-center h-full fade-in">
-              <h3 className="text-xl md:text-2xl font-bold text-white/90">{active!.title}</h3>
-              <p className="mt-3 text-white/70 leading-relaxed max-w-prose">{active!.description}</p>
+            <div
+              key={`text-${index}`}
+              className="order-2 lg:order-none flex flex-col justify-center items-center text-center h-full fade-in"
+            >
+              <h3 className="text-xl md:text-2xl font-bold text-white/90">
+                {active!.title}
+              </h3>
+              <p className="mt-3 text-white/70 leading-relaxed max-w-prose px-12 text-left">
+                {active!.description}
+              </p>
               {active!.link && (
                 <a
                   href={active!.link}
-                  target={active!.link.startsWith("http") ? "_blank" : undefined}
-                  rel={active!.link.startsWith("http") ? "noreferrer noopener" : undefined}
-                  className="mt-5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm text-white/90 hover:bg-white/10 transition"
+                  target={
+                    active!.link.startsWith("http") ? "_blank" : undefined
+                  }
+                  rel={
+                    active!.link.startsWith("http")
+                      ? "noreferrer noopener"
+                      : undefined
+                  }
+                  className="mt-5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm hover:bg-white/10 transition no-underline text-white"
                 >
                   Visit
                 </a>
@@ -168,10 +192,18 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
       {/* fade-in animation */}
       <style jsx>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-        .fade-in { animation: fadeIn 400ms ease-in; }
+        .fade-in {
+          animation: fadeIn 400ms ease-in;
+        }
       `}</style>
     </section>
   );

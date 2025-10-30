@@ -74,7 +74,7 @@ const projects: ProjectItem[] = [
 
 export default function ProjectCards() {
   return (
-    <div className="w-full mt-20 py-4 flex items-center justify-center">
+    <div className="w-full mt-2 md:mt-20 py-4 flex items-center justify-center">
       <ProjectCarousel items={projects} />
     </div>
   );
