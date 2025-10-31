@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export type ProjectItem = {
   title: string;
@@ -100,22 +101,25 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
               <p className="mt-3 text-white/70 leading-relaxed max-w-prose px-12 text-left">
                 {active!.description}
               </p>
-              {active!.link && (
-                <a
-                  href={active!.link}
-                  target={
-                    active!.link.startsWith("http") ? "_blank" : undefined
-                  }
-                  rel={
-                    active!.link.startsWith("http")
-                      ? "noreferrer noopener"
-                      : undefined
-                  }
-                  className="mt-5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm hover:bg-white/10 transition no-underline text-white"
-                >
-                  Visit
-                </a>
-              )}
+              {active!.link &&
+                (active!.link.startsWith("http") ? (
+                  // External link (keep target + rel)
+                  <Link
+                    href={active!.link}
+                    className="mt-5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm transition hover:bg-white/10
+             !no-underline !text-white visited:!text-white hover:!text-white"
+                  >
+                    Take a look!
+                  </Link>
+                ) : (
+                  // Internal link
+                  <Link
+                    href={active!.link}
+                    className="mt-5 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm hover:bg-white/10 transition !no-underline !text-white"
+                  >
+                    Visit
+                  </Link>
+                ))}
             </div>
 
             {/* IMAGE (mobile chevrons overlay here) */}
