@@ -105,7 +105,7 @@ export default function TechStackIcons() {
           >
             {/* CHANGED: bubble is fixed at w-10 h-10 */}
             <div
-              className="h-10 w-10 rounded-full border border-white/15
+              className="h-10 w-10 ml-1 rounded-full border border-white/15
                          bg-white/10 backdrop-blur-sm shadow-sm
                          flex items-center justify-center
                          transition hover:bg-white/15"
