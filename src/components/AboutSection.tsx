@@ -1,6 +1,5 @@
 import React from "react";
 import TechStackIcons from "./techStackIcons";
-import WavesBackdrop from "./ui/wave-animation";
 import Image from "next/image";
 import { CometCard } from "./ui/comet-card";
 import { cn } from "@/lib/utils";
@@ -9,7 +8,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="flex flex-col items-center py-6 overflow-hidden">
    
-      <div className="mt-12 w-full max-w-[80rem] mx-auto px-4 h-full">
+      <div className=" -mt-10 md:mt-12 w-full max-w-[80rem] mx-auto text-center px-4 md:pl-24 h-full">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 mb-10 h-full items-stretch">
           <div className="lg:col-span-7 h-full">

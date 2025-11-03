@@ -14,6 +14,7 @@ export type ProjectItem = {
 
 export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false); // NEW
   const startX = useRef<number | null>(null);
 
   const count = items?.length ?? 0;
@@ -47,12 +48,12 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
     startX.current = null;
   }
 
-  // Auto-rotate (6s)
+  // Auto-rotate (6s) — pause when hovered
   useEffect(() => {
-    if (count <= 1) return;
+    if (count <= 1 || paused) return; // NEW: don't start timer if paused
     const id = setInterval(() => setIndex((i) => clamp(i + 1)), 6000);
     return () => clearInterval(id);
-  }, [count, clamp]);
+  }, [count, clamp, paused]); // NEW: depend on paused
 
   const hasItems = (items?.length ?? 0) > 0;
   const active = hasItems ? items[index] : null;
@@ -62,6 +63,8 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
       className="w-full flex justify-center"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      onMouseEnter={() => setPaused(true)}  // NEW
+      onMouseLeave={() => setPaused(false)} // NEW
     >
       {/* Wrapper: 80% width */}
       <div className=" mx-auto flex flex-col items-center">
@@ -126,7 +129,7 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
             <div className="order-1 lg:order-none w-full flex justify-center">
               <div
                 key={`image-${index}`}
-                className="relative w-full max-w-2xl aspect-[16/10] rounded-xl overflow-hidden border border-white/10 fade-in"
+                className="relative w-full max-w-2xl aspect-[16/8] rounded-xl overflow-hidden border border-white/10 fade-in"
               >
                 <Image
                   src={active!.image}

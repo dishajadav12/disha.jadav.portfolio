@@ -135,15 +135,3 @@ export default function TechStackIcons() {
   );
 }
 
-export function TechStackCard() {
-  return (
-    <div className="col-span-1 lg:col-span-3 h-full border border-white/10 rounded-2xl p-6 overflow-hidden">
-      <h2 className="text-left text-base md:text-lg lg:text-xl font-semibold tracking-[-0.015em] text-white">
-        Tech Stack
-      </h2>
-      <div className="mt-4">
-        <TechStackIcons />
-      </div>
-    </div>
-  );
-}
