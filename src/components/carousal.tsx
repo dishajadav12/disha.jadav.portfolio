@@ -98,10 +98,10 @@ export default function ProjectCarousel({ items }: { items: ProjectItem[] }) {
               key={`text-${index}`}
               className="order-2 lg:order-none flex flex-col justify-center items-center text-center h-full fade-in"
             >
-              <h3 className="text-xl md:text-2xl font-bold text-white/90">
+              <h3 className="text-xl md:text-2xl font-bold text-white/90 ">
                 {active!.title}
               </h3>
-              <p className="mt-3 text-white/70 leading-relaxed max-w-prose px-12 text-left">
+              <p className="mt-3 text-white/70 leading-relaxed max-w-prose px-2 md:px-12 text-left">
                 {active!.description}
               </p>
               {active!.link &&
