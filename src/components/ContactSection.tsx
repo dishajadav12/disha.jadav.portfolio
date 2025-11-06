@@ -215,7 +215,7 @@ export default function ConnectChat() {
       
 
       {/* Header */}
-      <header className="mx-auto w-full max-w-3xl px-4 pt-20 pb-6 text-center flex flex-col items-center">
+      <header className="mx-auto w-full max-w-3xl px-4 pt-5 md:pt-20 pb-6 text-center flex flex-col items-center">
          <Image
                       src="/images/DJ_icon_WHITE.png"
                       alt="Disha Jadav Logo"
