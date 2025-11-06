@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
 const links = [
   { id: 'home', label: 'Home' },
@@ -40,6 +41,11 @@ export default function Navbar() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  // Focus first link when drawer opens
+  useEffect(() => {
+    if (open) firstLinkRef.current?.focus();
+  }, [open]);
 
   // Custom smooth scroll with slower duration
   const handleClick = (id: string) => {
@@ -80,12 +86,26 @@ export default function Navbar() {
         } rounded-full px-4 py-2`}
         aria-label="Primary"
       >
-        <ul className="flex gap-4 items-center">
+        {/* Fixed row height and centered items for perfect vertical alignment */}
+        <ul className="flex h-10 items-center justify-center gap-4 px-4">
+          {/* Make the logo a flex item and remove baseline gap */}
+          <li className="flex items-center pr-10 pb-1">
+            <Image
+              src="/images/DJ_icon_WHITE.png"
+              alt="Disha Jadav Logo"
+              width={20}
+              height={20}
+              priority
+              className="block"
+            />
+          </li>
+
           {links.map((l) => (
             <li key={l.id}>
+              {/* inline-flex + h-10 + leading-none keeps text centered with the logo */}
               <button
                 onClick={() => onNavClick(l.id)}
-                className="px-3 py-2 rounded hover:bg-white/10 hover:rounded-3xl focus:outline-none focus-visible:ring focus-visible:ring-white/30"
+                className="inline-flex h-10 items-center rounded px-3 py-0 leading-none hover:bg-white/10 hover:rounded-3xl focus:outline-none focus-visible:ring focus-visible:ring-white/30"
               >
                 {l.label}
               </button>
@@ -147,7 +167,14 @@ export default function Navbar() {
             aria-modal="true"
           >
             <div className="flex items-center justify-between p-4 border-b border-white/10">
-              <span className="text-lg font-semibold">Menu</span>
+              <span className="text-lg font-semibold ml-2"> <Image
+              src="/images/DJ_icon_WHITE.png"
+              alt="Disha Jadav Logo"
+              width={20}
+              height={20}
+              priority
+              className="block"
+            /></span>
               <button
                 type="button"
                 className="rounded-lg p-2 hover:bg-white/10 focus:outline-none focus-visible:ring focus-visible:ring-white/30"

@@ -134,6 +134,7 @@ import {
   IconMail,
 } from "@tabler/icons-react";
 import { Send } from "lucide-react";
+import Image from "next/image";
 
 // Simple message type
 type Msg = { role: "user" | "ai"; content: string };
@@ -214,8 +215,16 @@ export default function ConnectChat() {
       
 
       {/* Header */}
-      <header className="mx-auto w-full max-w-3xl px-4 pt-20 pb-6 text-center">
-        <h1 className="text-2xl md:text-5xl font-bold tracking-tight text-white/90">
+      <header className="mx-auto w-full max-w-3xl px-4 pt-20 pb-6 text-center flex flex-col items-center">
+         <Image
+                      src="/images/DJ_icon_WHITE.png"
+                      alt="Disha Jadav Logo"
+                      width={100}
+                      height={100}
+                      priority
+                      className="block"
+                    />
+        <h1 className="text-2xl md:text-5xl font-bold tracking-tight text-white/90 mt-10">
           Let’s connect
         </h1>
         <p className="mt-3 text-white/70">
