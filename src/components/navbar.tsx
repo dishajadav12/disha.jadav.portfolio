@@ -91,7 +91,7 @@ export default function Navbar() {
           {/* Make the logo a flex item and remove baseline gap */}
           <li className="flex items-center pr-10 pb-1">
             <Image
-              src="/images/DJ_icon_WHITE.png"
+              src="/images/brand_icon_dj.png"
               alt="Disha Jadav Logo"
               width={20}
               height={20}
@@ -168,7 +168,7 @@ export default function Navbar() {
           >
             <div className="flex items-center justify-between p-4 border-b border-white/10">
               <span className="text-lg font-semibold ml-2"> <Image
-              src="/images/DJ_icon_WHITE.png"
+              src="/images/brand_icon_dj.png"
               alt="Disha Jadav Logo"
               width={20}
               height={20}
