@@ -202,7 +202,6 @@ export default function Navbar() {
               ))}
             </ul>
 
-            <div className="px-4 py-3 text-xs text-white/60">Press Esc to close</div>
           </motion.aside>
         )}
       </AnimatePresence>
