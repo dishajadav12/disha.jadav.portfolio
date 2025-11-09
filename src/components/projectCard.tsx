@@ -13,7 +13,7 @@ export type ProjectItem = {
 
 const projects: ProjectItem[] = [
   {
-    title: "Tommy Chat — AI Game Chat Moderator",
+    title: "Tommy Chat - AI Game Chat Moderator",
     link: "#",
     image:
       "/images/tommy-chat.png",
@@ -21,7 +21,7 @@ const projects: ProjectItem[] = [
       "An AI-powered in-game chat companion designed to moderate multiplayer conversations in real time. Tommy detects tension, greets new players, and engages in natural, story-driven interactions. Built with FastAPI + Socket.IO backend, Claude AI for personality and reasoning, and Fish Audio TTS for expressive speech generation.",
   },
   {
-    title: "Inn Sync — Rental Management Platform",
+    title: "Inn Sync - Rental Management Platform",
     link: "https://innsync-gamma.vercel.app",
     image:
       "/images/inn-sync.png",
@@ -29,7 +29,7 @@ const projects: ProjectItem[] = [
       "A full-featured rental platform enabling hosts and guests to manage listings, bookings, and payments seamlessly. Built with Next.js, Prisma, and Supabase PostgreSQL for strong data consistency and role-based permissions. Integrated Stripe Checkout and Webhooks with idempotent actions to prevent overlapping reservations and duplicate payments.",
   },
   {
-    title: "iNotebook — Note-Taking App",
+    title: "iNotebook - Note-Taking App",
     link: "https://inotebook-client-eight.vercel.app",
     image:
       "/images/i-notebook.png",
@@ -62,7 +62,7 @@ const projects: ProjectItem[] = [
       "A simple yet powerful text utility app that performs word and letter counts, case conversions, and text filtering. Built using React and JavaScript as an early project to explore component design and state management. Offers real-time feedback and clean UX for quick content analysis.",
   },
   {
-    title: "Tin Dog — Landing Page",
+    title: "Tin Dog - Landing Page",
     link: "#",
     image:
       "/images/tin-dog.png",

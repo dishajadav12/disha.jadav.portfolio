@@ -230,10 +230,7 @@ export default function ConnectChat() {
         <p className="mt-3 text-white/70">
       Send me a quick message and I&apos;ll follow up personally. Share your idea, scope, or just say hello.
         </p>
-        <p className="mt-2 text-sm text-white/60">
-          {"("}Hint: {""}
-          <span className="font-medium">pizza + sunset</span> is unbeatable.
-        </p>
+
         {/* Icon-only social links */}
         <div className="mt-5 flex justify-center gap-3">
           {links.map(({ title, href, Icon }) => (
@@ -254,7 +251,7 @@ export default function ConnectChat() {
       {/* Fun fact banner */}
       <div className="mx-auto mt-4 w-full max-w-3xl px-4">
         <div className="mb-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur p-3 text-center text-sm text-white/80">
-          🍕 Fun fact: <span className="font-medium">pizza with sunset is something that never goes off</span>.
+          Fun fact: <span className="font-medium">give me pizza and a sunset, and I’ll call it a perfect day 🍕</span>
         </div>
       </div>
 
