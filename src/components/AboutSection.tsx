@@ -23,13 +23,13 @@ export default function AboutSection() {
               <p className="text-xs text-white/60">Software Engineer • UI/UX </p>
 
               <p className="mt-3 text-sm md:text-base text-white/70 leading-6 max-w-prose">
-                I&apos;m a software engineer with over 1 year of hands-on experience in designing, building, and maintaining scalable applications. I&apos;m currently pursuing my Master&apos;s in Software Engineering to deepen my understanding of software architecture, design patterns, and enterprise-level technologies. My focus is on writing clean, maintainable code, exploring distributed systems, and improving product reliability.
+                I&apos;m a software engineer with over 2 years of hands-on experience designing, building, and scaling full-stack systems. I&apos;m currently pursuing my Master&apos;s in Software Engineering at SJSU, with coursework in distributed systems and enterprise software platforms. Lately I work at the intersection of backend and AI: event-driven pipelines, agentic LLM workflows with the Claude and Gemini APIs, and RAG-based search. My focus is on writing clean, maintainable code and building systems that degrade gracefully instead of breaking loudly.
               </p>
 
               <div className="mt-4 w-full max-w-md">
                 <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                   {[
-                    { k: "Years", v: "1+" },
+                    { k: "Years", v: "2+" },
                     { k: "Projects", v: "10+" },
                     { k: "Coffee", v: "∞" },
                   ].map((s) => (

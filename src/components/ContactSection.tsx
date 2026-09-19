@@ -144,7 +144,7 @@ export default function ConnectChat() {
     {
       role: "ai",
       content:
-        "Hey! I’m your friendly portfolio AI. Tell me about your project, goals, or just say hi — I’ll reply right away. 👋",
+        "Hey! I’m your friendly portfolio AI. Tell me about your project, goals, or just say hi. I’ll reply right away. 👋",
     },
   ]);
   const [input, setInput] = useState("");
@@ -161,7 +161,7 @@ export default function ConnectChat() {
 
     // Lightweight, friendly reply logic
     const canned: string[] = [
-      "Awesome — tell me a bit more. What timeline are you aiming for?",
+      "Awesome! Tell me a bit more. What timeline are you aiming for?",
       "Got it! What problem are you trying to solve?",
       "Love that. What does success look like for you?",
       "Thanks for sharing! Any preferred tech stack or vibe?",

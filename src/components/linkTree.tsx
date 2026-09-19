@@ -54,11 +54,9 @@ export function LinkTree() {
     },
   ];
   return (
-    <div className="fixed top-10 right-4 h-[35rem] w-fit z-50">
-      <FloatingDock
-        mobileClassName="translate-y-20" // only for demo, remove for production
-        items={links}
-      />
+    // Pinned to the viewport's bottom-right corner (clear of the iOS home indicator)
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 md:right-6 w-fit z-50">
+      <FloatingDock items={links} />
     </div>
   );
 }

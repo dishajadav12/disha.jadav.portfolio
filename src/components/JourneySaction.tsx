@@ -15,7 +15,7 @@ function FixedThumb({
   return (
     <div
       className={`relative rounded-lg overflow-hidden ${shadow}`}
-      // 👇 fixed dimensions — same on all screens
+      // 👇 fixed dimensions: same on all screens
       style={{ width: 300, height: 200 }}
     >
       <Image
@@ -33,11 +33,33 @@ function FixedThumb({
 export default function JourneySection() {
   const data = [
     {
+      title: 'Jul 2026 - Aug 2026',
+      content: (
+        <div>
+          <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
+            Joined <a
+              href="https://myheritagetable.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="!text-indigo-400 underline underline-offset-4 hover:!text-indigo-300"
+            >Heritage Table</a>, an early-stage AI startup in San Francisco, as the
+            <span className="text-[rgba(0,255,255,1)]"> Founding Engineering Intern</span> and sole engineer, owning every architecture decision.
+            Built the platform end to end with Next.js, TypeScript and tRPC on PostgreSQL/Supabase, plus agentic LLM pipelines on the
+            Claude and Gemini APIs: voice transcription across 10+ languages, vision-based document extraction, and RAG-based semantic search, shipped to 50+ beta users.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <FixedThumb src="/images/heritage-table-1.png" alt="Heritage Table dashboard" />
+            <FixedThumb src="/images/heritage-table-2.jpg" alt="Build What You Love event in San Francisco" />
+          </div>
+        </div>
+      ),
+    },
+    {
       title: 'Aug 2025',
       content: (
         <div>
           <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
-            Embarked on a new chapter — pursuing my Master’s in Computer Software Engineering at
+            Embarked on a new chapter, pursuing my Master’s in Software Engineering at
             <span className="text-[rgba(0,255,255,1)]"> San José State University</span>, exploring advanced software systems and AI-driven development.
           </p>
           {/* Using flex so fixed-size thumbs don’t stretch */}
@@ -49,13 +71,14 @@ export default function JourneySection() {
       ),
     },
     {
-      title: 'May 2024 — Jul 2025',
+      title: 'Apr 2024 - Jul 2025',
       content: (
         <div>
           <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
-            Worked as a <span className="text-[rgba(0,255,255,1)]">Full Stack Developer</span> at NeuralWeb Technologies,
-            contributing to <span className="text-indigo-400">Backpack Healthcare</span> — a US-based mental health startup.
-            Built core app and web platform features, gaining hands-on experience with scalable architecture and real-world deployments.
+            Worked as a <span className="text-[rgba(0,255,255,1)]">Full Stack Developer</span> at Neural Web Technologies,
+            contributing to <span className="text-indigo-400">Backpack Healthcare</span>, a US-based mental health startup.
+            Built a Node.js/GraphQL scheduling platform with conflict detection and real-time chat, and architected a Redis caching layer on AWS ECS:
+            scaled 2,000 to 7,000+ active users, cut API response time 30%, and lifted weekly retention 15%.
           </p>
           <div className="flex flex-wrap gap-4">
             <FixedThumb src="/images/neuralweb-1.png" alt="work sample" />
@@ -65,12 +88,12 @@ export default function JourneySection() {
       ),
     },
     {
-      title: 'Jan 2024 — Apr 2024',
+      title: 'Jan 2024 - Apr 2024',
       content: (
         <div>
           <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
             Completed a <span className="text-[rgba(0,255,255,1)]">Software Engineering Internship</span> at Epistic Technologies
-            as part of my academic curriculum — gaining foundational experience in full-stack development, APIs, and agile teamwork.
+            as part of my academic curriculum, gaining foundational experience in full-stack development, APIs, and agile teamwork.
           </p>
           <div className="flex flex-wrap gap-4">
             <FixedThumb
@@ -88,12 +111,12 @@ export default function JourneySection() {
       ),
     },
     {
-      title: '2020 — 2024',
+      title: '2020 - 2024',
       content: (
         <div>
           <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
             Graduated with a <span className="text-[rgba(0,255,255,1)]">Bachelor’s in Computer Engineering</span> from
-            <span className="text-[rgba(0,255,255,0.1)]"> A.D. Patel Institute of Technology</span>.
+            <span className="text-[rgba(0,255,255,1)]"> A.D. Patel Institute of Technology</span>.
             Built a strong foundation in programming, software design, and project-based learning that sparked my passion for full-stack development.
           </p>
           <div className="flex flex-wrap gap-4">

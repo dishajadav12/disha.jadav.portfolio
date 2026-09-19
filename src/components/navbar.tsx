@@ -149,7 +149,7 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Drawer (FULL WIDTH) — glass effect */}
+      {/* Drawer (FULL WIDTH): glass effect */}
       <AnimatePresence>
         {open && (
           <motion.aside

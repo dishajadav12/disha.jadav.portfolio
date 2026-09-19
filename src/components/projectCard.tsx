@@ -1,81 +1,112 @@
-"use client";
-
 import React from "react";
-import ProjectCarousel from "./carousal";
+import Image from "next/image";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import type { FlowNode, ProjectItem } from "@/lib/project-data";
 
-/** If you already have these in "@/lib/project-data", delete this block. */
-export type ProjectItem = {
-  title: string;
-  link?: string;
-  image: string;
-  description: string;
-};
-
-const projects: ProjectItem[] = [
-  {
-    title: "Tommy Chat - AI Game Chat Moderator",
-    link: "#",
-    image:
-      "/images/tommy-chat.png",
-    description:
-      "An AI-powered in-game chat companion designed to moderate multiplayer conversations in real time. Tommy detects tension, greets new players, and engages in natural, story-driven interactions. Built with FastAPI + Socket.IO backend, Claude AI for personality and reasoning, and Fish Audio TTS for expressive speech generation.",
-  },
-  {
-    title: "Inn Sync - Rental Management Platform",
-    link: "https://innsync-gamma.vercel.app",
-    image:
-      "/images/inn-sync.png",
-    description:
-      "A full-featured rental platform enabling hosts and guests to manage listings, bookings, and payments seamlessly. Built with Next.js, Prisma, and Supabase PostgreSQL for strong data consistency and role-based permissions. Integrated Stripe Checkout and Webhooks with idempotent actions to prevent overlapping reservations and duplicate payments.",
-  },
-  {
-    title: "iNotebook - Note-Taking App",
-    link: "https://inotebook-client-eight.vercel.app",
-    image:
-      "/images/i-notebook.png",
-    description:
-      "A secure cloud-based note-taking app allowing users to create, edit, and delete private notes. Features JWT-based authentication, protected routes, and persistent sessions for seamless user experience. Built with a Node.js/Express REST API, MongoDB backend, and modular React frontend with accessibility in mind.",
-  },
-  
-  {
-    title: "TaskBoard",
-    link: "https://652927227aab9b1c45450823--taupe-longma-45a436.netlify.app/",
-    image:
-      "/images/task-board.png",
-    description:
-      "A productivity-focused task management web app for organizing daily activities efficiently. Users can add, edit, delete, and drag tasks between workflow stages to track progress visually. Built with React and local state management, providing a smooth drag-and-drop experience inspired by Kanban boards.",
-  },
-  {
-    title: "Stack Overflow Clone",
-    link: "#",
-    image:
-      "/images/stack-overflow.png",
-    description:
-      "A full-stack MERN clone of Stack Overflow enabling users to post questions, provide answers, and upvote content. Features JWT-based authentication, dynamic voting system, and a responsive interface. Designed for real-time interaction and scalability with an emphasis on user engagement.",
-  },
-  {
-    title: "Text Utils",
-    link: "#",
-    image:
-      "/images/text-utils.png",
-    description:
-      "A simple yet powerful text utility app that performs word and letter counts, case conversions, and text filtering. Built using React and JavaScript as an early project to explore component design and state management. Offers real-time feedback and clean UX for quick content analysis.",
-  },
-  {
-    title: "Tin Dog - Landing Page",
-    link: "#",
-    image:
-      "/images/tin-dog.png",
-    description:
-      "A playful and visually engaging landing page inspired by dating apps — but for dogs! Created as a first web design project using HTML5, CSS3, and Bootstrap. Focused on responsive layouts, visual hierarchy, and typography fundamentals to learn modern web styling techniques.",
-  },
-];
-
-
-export default function ProjectCards() {
+function FlowPill({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-full mt-2 md:mt-20 py-4 flex items-center justify-center">
-      <ProjectCarousel items={projects} />
+    <span className="whitespace-nowrap rounded-md border border-cyan-300/30 bg-[rgba(0,15,29,0.85)] px-1.5 py-1 text-[10px] xl:px-2 xl:text-[11px] font-medium text-cyan-100/90">
+      {children}
+    </span>
+  );
+}
+
+// Blueprint-style architecture sketch for projects without a screenshot
+function FlowDiagram({ nodes }: { nodes: FlowNode[] }) {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center bg-[radial-gradient(ellipse_at_center,rgba(0,255,255,0.08),transparent_70%)] px-4">
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:20px_20px]"
+      />
+      <span className="absolute left-3 top-3 text-[10px] uppercase tracking-[0.16em] text-white/35">
+        Architecture
+      </span>
+      <div className="relative flex items-center justify-center gap-1 xl:gap-1.5">
+        {nodes.map((node, i) => (
+          <React.Fragment key={i}>
+            {i > 0 && <ArrowRight aria-hidden className="h-3 w-3 xl:h-3.5 xl:w-3.5 shrink-0 text-cyan-300/60" />}
+            {typeof node === "string" ? (
+              <FlowPill>{node}</FlowPill>
+            ) : (
+              <div className="flex flex-col items-center gap-1">
+                {node.items.map((item) => (
+                  <FlowPill key={item}>{item}</FlowPill>
+                ))}
+                {node.label && (
+                  <span className="text-[10px] uppercase tracking-wider text-white/40">{node.label}</span>
+                )}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
+  );
+}
+
+export default function ProjectCard({ project }: { project: ProjectItem }) {
+  const { title, category, pitch, highlights, stack, link, image, flow } = project;
+
+  return (
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40 hover:shadow-[0_0_32px_rgba(0,255,255,0.08)]">
+      {/* Header visual: screenshot, or the architecture flow */}
+      <div className="relative h-44 overflow-hidden border-b border-white/10">
+        {image ? (
+          <>
+            <Image
+              src={image}
+              alt={`${title} screenshot`}
+              fill
+              sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
+              className="object-cover object-top transition duration-500 group-hover:scale-[1.03]"
+            />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[rgba(0,15,29,0.5)] to-transparent" />
+          </>
+        ) : (
+          flow && <FlowDiagram nodes={flow} />
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col p-5">
+        <p className="text-[11px] uppercase tracking-[0.14em] text-cyan-300/80">{category}</p>
+
+        <div className="mt-2 flex items-start justify-between gap-3">
+          <h3 className="text-lg font-semibold text-white">{title}</h3>
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs transition hover:border-cyan-300/50 hover:bg-white/10 !text-white !no-underline"
+            >
+              Live <ArrowUpRight aria-hidden className="h-3.5 w-3.5" />
+            </a>
+          )}
+        </div>
+
+        <p className="mt-2 text-sm leading-relaxed text-white/70">{pitch}</p>
+
+        <ul className="mt-4 space-y-2 text-sm leading-snug text-white/60">
+          {highlights.map((h) => (
+            <li key={h} className="flex gap-2.5">
+              <span aria-hidden className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-cyan-300/70" />
+              {h}
+            </li>
+          ))}
+        </ul>
+
+        <ul className="mt-auto flex flex-wrap gap-1.5 pt-5">
+          {stack.map((tech) => (
+            <li
+              key={tech}
+              className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] text-white/70"
+            >
+              {tech}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
   );
 }

@@ -29,7 +29,7 @@ export const FloatingDock = ({
   );
 };
 
-// ✅ Mobile dock (absolute inside parent)
+// ✅ Mobile dock: toggle button, links open upward
 const FloatingDockMobile = ({
   items,
   className,
@@ -40,7 +40,7 @@ const FloatingDockMobile = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className={cn("absolute bottom-4 right-4 z-50 block md:hidden", className)}>
+    <div className={cn("relative z-50 block md:hidden", className)}>
       <AnimatePresence>
         {open && (
           <motion.div
@@ -82,7 +82,7 @@ const FloatingDockMobile = ({
   );
 };
 
-// ✅ Desktop dock (absolute inside parent)
+// ✅ Desktop dock: vertical stack, grows upward from the bottom
 const FloatingDockDesktop = ({
   items,
   className,
@@ -97,10 +97,9 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseY.set(e.clientY)}
       onMouseLeave={() => mouseY.set(Infinity)}
       className={cn(
-        "absolute right-4 top-36 z-40 hidden flex-col items-center gap-4 rounded-2xl py-4 md:flex dark:bg-neutral-900 shadow-lg",
+        "relative z-40 hidden flex-col items-center gap-4 rounded-2xl py-4 md:flex dark:bg-neutral-900 shadow-lg",
         className
       )}
-      style={{ transform: "translateY(-50%)" }} // center vertically
     >
       {items.map((item) => (
         <IconContainer key={item.title} mouseY={mouseY} {...item} />

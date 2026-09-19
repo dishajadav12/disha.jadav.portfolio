@@ -88,3 +88,15 @@ a { color: #2563eb; text-decoration: underline; }
   display: none;
 }
 
+
+/* Hero scroll cue: a slow, gentle drift down and back */
+@keyframes scrollCue {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+.animate-scroll-cue {
+  animation: scrollCue 2.8s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-cue { animation: none; }
+}

@@ -5,6 +5,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
+import { ChevronDown } from "lucide-react";
 
 
 // Avoid SSR if LightRays uses window/WebGL
@@ -45,7 +46,7 @@ export default function HomeSection() {
         <Typewriter
           words={[
             "Software Engineer",
-            "Frontend Developer",
+            "Full Stack Developer",
             "AI Enthusiast",
             "Exploring Agentic world of AI",
             "UI/UX Designer",
@@ -70,6 +71,17 @@ export default function HomeSection() {
                 priority
               />
       </div>
+
+      {/* Scroll cue */}
+      <a
+        href="#about"
+        aria-label="Scroll to About"
+        className="group absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2 !no-underline"
+      >
+        <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white/70 backdrop-blur-sm transition group-hover:border-cyan-300/50 group-hover:text-white animate-scroll-cue">
+          <ChevronDown aria-hidden className="h-4 w-4" />
+        </span>
+      </a>
     </section>
   );
 }

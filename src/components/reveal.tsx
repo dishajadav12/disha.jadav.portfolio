@@ -8,7 +8,7 @@ type RevealProps = {
   once?: boolean;
   /** How far before the element is fully in view to trigger (CSS margin syntax) */
   rootMargin?: string;
-  /** 0..1 — how much of the element should be visible to trigger */
+  /** 0..1: how much of the element should be visible to trigger */
   threshold?: number | number[];
   /** Optional stagger delay in ms (useful in lists/grids) */
   delay?: number;
