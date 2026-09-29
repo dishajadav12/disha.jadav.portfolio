@@ -5,23 +5,13 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandX,
-  IconFileAnalytics,
-
   IconMail,
-
 } from "@tabler/icons-react";
 
 export function LinkTree() {
   const links = [
    
 
-    {
-      title: "Resume",
-      icon: (
-        <IconFileAnalytics className="h-full w-full text-neutral-200 dark:text-neutral-300" />
-      ),
-      href: "/Disha_Jadav_Resume.pdf",
-    },
     {
       title: "LinkedIn",
       icon: (

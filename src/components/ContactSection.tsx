@@ -130,7 +130,6 @@ import {
   IconBrandGithub,
   IconBrandLinkedin,
   IconBrandX,
-  IconFileAnalytics,
   IconMail,
 } from "@tabler/icons-react";
 import { Send } from "lucide-react";
@@ -203,7 +202,6 @@ export default function ConnectChat() {
 
   // Simple social links for icons only
   const links = [
-    { title: "Resume", href: "/Disha_Jadav_Resume.pdf", Icon: IconFileAnalytics },
     { title: "LinkedIn", href: "https://www.linkedin.com/in/disha-jadav-606484209/", Icon: IconBrandLinkedin },
     { title: "Email", href: "mailto:dishajadav12402@gmail.com", Icon: IconMail },
     { title: "Twitter", href: "https://x.com/diishaa12_", Icon: IconBrandX },
