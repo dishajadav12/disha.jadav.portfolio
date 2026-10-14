@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { Timeline } from './ui/timeline';
+import ReadMore from './ReadMore';
 
 // One fixed-size thumbnail used everywhere
 function FixedThumb({
@@ -36,17 +37,21 @@ export default function JourneySection() {
       title: 'Jul 2026 - Aug 2026',
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
-            Joined <a
-              href="https://myheritagetable.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="!text-indigo-400 underline underline-offset-4 hover:!text-indigo-300"
-            >Heritage Table</a>, an early-stage AI startup in San Francisco, as the
-            <span className="text-[rgba(0,255,255,1)]"> Founding Engineering Intern</span> and sole engineer, owning every architecture decision.
-            Built the platform end to end with Next.js, TypeScript and tRPC on PostgreSQL/Supabase, plus agentic LLM pipelines on the
-            Claude and Gemini APIs: voice transcription across 10+ languages, vision-based document extraction, and RAG-based semantic search, shipped to 50+ beta users.
-          </p>
+          <ReadMore>
+            <p className="text-xs font-normal md:text-lg text-neutral-200 mb-4">
+              Joined <a
+                href="https://myheritagetable.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="!text-indigo-400 underline underline-offset-4 hover:!text-indigo-300"
+              >Heritage Table</a>, an early-stage AI startup in San Francisco, as the
+              <span className="text-[rgba(0,255,255,1)]"> Founding Engineering Intern</span> and sole engineer, owning every architecture decision from the data model to deployment.
+              I built the platform end to end with Next.js, TypeScript and tRPC on PostgreSQL and Supabase, with row-level security on user data, a Stripe payments flow with webhook-driven order tracking, and a Capacitor mobile app built from the same codebase.
+            </p>
+            <p className="text-xs font-normal md:text-lg text-neutral-200 mb-0">
+              The core of the product is a set of LLM pipelines on the Claude and Gemini APIs that turn how families actually preserve recipes into structured data. A voice pipeline transcribes and translates spoken recipes across 10+ languages. A vision pipeline reads photos of handwritten recipe cards and extracts structured recipes from them. Vector embeddings power semantic search, so families can search conversationally instead of by keyword. Each pipeline chains several model calls with orchestration, retries and recovery built in. A failed step retries on its own, without rerunning the whole flow or creating duplicate records. I also built real-time collaborative editing with live presence and conflict resolution, and shipped everything to 50+ beta users, working directly with them on requirements and feedback.
+            </p>
+          </ReadMore>
           <div className="flex flex-wrap gap-4">
             <FixedThumb src="/images/heritage-table-1.png" alt="Heritage Table dashboard" />
             <FixedThumb src="/images/heritage-table-2.jpg" alt="Build What You Love event in San Francisco" />
@@ -74,12 +79,16 @@ export default function JourneySection() {
       title: 'Apr 2024 - Jul 2025',
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal md:text-lg text-neutral-200">
-            Worked as a <span className="text-[rgba(0,255,255,1)]">Full Stack Developer</span> at Neural Web Technologies,
-            contributing to <span className="text-indigo-400">Backpack Healthcare</span>, a US-based mental health startup.
-            Built a Node.js/GraphQL scheduling platform with conflict detection and real-time chat, and architected a Redis caching layer on AWS ECS:
-            scaled 2,000 to 7,000+ active users, cut API response time 30%, and lifted weekly retention 15%.
-          </p>
+          <ReadMore>
+            <p className="text-xs font-normal md:text-lg text-neutral-200 mb-4">
+              Worked as a <span className="text-[rgba(0,255,255,1)]">Full Stack Developer</span> at Neural Web Technologies,
+              contributing to <span className="text-indigo-400">Backpack Healthcare</span>, a US-based mental health startup connecting children and families with clinicians.
+              The platform was a multi-portal system of Node.js APIs and Next.js portals, with a mobile app built on the same stack. I built the scheduling platform in Node.js and GraphQL, with database-level conflict detection across clinician and patient appointments and personal events, plus real-time chat over WebSockets.
+            </p>
+            <p className="text-xs font-normal md:text-lg text-neutral-200 mb-0">
+              On the infrastructure side, I built the event-driven backend: SQS events published after mutations so downstream consumers stay decoupled, Lambda functions for async jobs like notification emails and file processing, and S3 presigned uploads so the server never handles file bytes. I also set up the CI/CD pipeline on AWS ECS with zero-downtime deploys and architected a Redis caching layer. The platform scaled from 2,000 to 7,000+ active users, sustained 10,000+ concurrent users during live events, cut API response time 30%, and lifted weekly retention 15%.
+            </p>
+          </ReadMore>
           <div className="flex flex-wrap gap-4">
             <FixedThumb src="/images/neuralweb-1.png" alt="work sample" />
             <FixedThumb src="/images/neuralweb-2.png" alt="project preview" />
