@@ -7,8 +7,6 @@ export const metadata: Metadata = {
   title: "Disha Jadav - Portfolio",
   description: "Disha Jadav's personal portfolio showcasing projects, skills, and experience in web development.",
 };
-<meta name="grammarly" content="false" />
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

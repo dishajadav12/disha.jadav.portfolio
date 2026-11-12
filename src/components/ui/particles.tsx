@@ -100,6 +100,15 @@ const fragment = /* glsl */ `
   }
 `;
 
+const isWebGLAvailable = (): boolean => {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(canvas.getContext('webgl2') || canvas.getContext('webgl'));
+  } catch {
+    return false;
+  }
+};
+
 const Particles: React.FC<ParticlesProps> = ({
   particleCount = 200,
   particleSpread = 10,
@@ -121,8 +130,17 @@ const Particles: React.FC<ParticlesProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    const renderer = new Renderer({ depth: false, alpha: true });
+    if (!isWebGLAvailable()) return;
+
+    let renderer: Renderer;
+    try {
+      renderer = new Renderer({ depth: false, alpha: true });
+    } catch (error) {
+      console.warn('WebGL unavailable, skipping particles:', error);
+      return;
+    }
     const gl = renderer.gl;
+    if (!gl) return;
     container.appendChild(gl.canvas);
     gl.clearColor(0, 0, 0, 0);
 
